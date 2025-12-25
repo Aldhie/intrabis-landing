@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  intrabis-landing:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: intrabis-landing
+    ports:
+      - "8080:80"
+    restart: unless-stopped
+    networks:
+      - intrabis-network
+    environment:
+      - TZ=Asia/Jakarta
+    labels:
+      - "com.intrabis.description=IntraBis Landing Page"
+      - "com.intrabis.version=1.0.0"
+    # Optional: Mount for development
+    # volumes:
+    #   - ./index.html:/usr/share/nginx/html/index.html:ro
+
+networks:
+  intrabis-network:
+    driver: bridge
