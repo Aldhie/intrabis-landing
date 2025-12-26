@@ -1,4 +1,4 @@
-/* ================= RESET ================= */
+/* ========== RESET ========== */
 * {
   margin: 0;
   padding: 0;
@@ -13,7 +13,7 @@ html, body {
   color: #ffffff;
 }
 
-/* ================= HERO ================= */
+/* ========== HERO ========== */
 .hero {
   position: relative;
   width: 100%;
@@ -21,7 +21,7 @@ html, body {
   overflow: hidden;
 }
 
-/* ================= VIDEO ================= */
+/* ========== VIDEO ========== */
 .hero-video {
   position: absolute;
   inset: 0;
@@ -29,27 +29,27 @@ html, body {
   height: 100%;
   object-fit: cover;
 
-  /* FINAL TUNING (NOT OVER-BLUR) */
-  filter: blur(2.5px) brightness(0.6) contrast(1.05);
-  transform: scale(1.04);
+  /* 🔥 FINAL BLUR TUNING */
+  filter: blur(1.4px) brightness(0.7) contrast(1.1);
+  transform: scale(1.03);
 
   z-index: 1;
 }
 
-/* ================= OVERLAY ================= */
+/* ========== OVERLAY ========== */
 .hero-overlay {
   position: absolute;
   inset: 0;
   background: linear-gradient(
     to bottom,
-    rgba(2, 6, 23, 0.75),
-    rgba(2, 6, 23, 0.6),
-    rgba(2, 6, 23, 0.85)
+    rgba(2, 6, 23, 0.55),
+    rgba(2, 6, 23, 0.45),
+    rgba(2, 6, 23, 0.75)
   );
   z-index: 2;
 }
 
-/* ================= CONTENT ================= */
+/* ========== CONTENT ========== */
 .hero-content {
   position: relative;
   z-index: 3;
@@ -63,38 +63,38 @@ html, body {
   justify-content: center;
 }
 
-/* ================= BRAND ================= */
+/* ========== BRAND ========== */
 .hero-brand {
-  letter-spacing: 0.3em;
+  letter-spacing: 0.32em;
   font-size: 12px;
-  opacity: 0.8;
-  margin-bottom: 24px;
+  opacity: 0.85;
+  margin-bottom: 22px;
 }
 
-/* ================= TITLE ================= */
+/* ========== TITLE ========== */
 .hero-content h1 {
   font-size: clamp(36px, 5vw, 64px);
   font-weight: 800;
   line-height: 1.15;
-  margin-bottom: 24px;
+  margin-bottom: 22px;
 }
 
-/* ================= SUBTITLE ================= */
+/* ========== SUBTITLE ========== */
 .hero-subtitle {
   max-width: 640px;
   font-size: 16px;
   line-height: 1.7;
   opacity: 0.85;
-  margin-bottom: 40px;
+  margin-bottom: 38px;
 }
 
-/* ================= ACTIONS ================= */
+/* ========== ACTIONS ========== */
 .hero-actions {
   display: flex;
   gap: 16px;
 }
 
-/* ================= BUTTONS ================= */
+/* ========== BUTTONS ========== */
 .btn {
   padding: 14px 28px;
   border-radius: 10px;
@@ -102,9 +102,6 @@ html, body {
   font-weight: 500;
   text-decoration: none;
   transition: all 0.25s ease;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
 }
 
 /* Primary */
@@ -120,19 +117,18 @@ html, body {
 /* Secondary */
 .btn-secondary {
   border: 1px solid rgba(255, 255, 255, 0.25);
-  color: #ffffff;
   background: rgba(255, 255, 255, 0.05);
+  color: #ffffff;
 }
 
 .btn-secondary:hover {
   background: rgba(255, 255, 255, 0.12);
 }
 
-/* ================= RESPONSIVE ================= */
+/* ========== MOBILE ========== */
 @media (max-width: 768px) {
   .hero-actions {
     flex-direction: column;
-    width: 100%;
   }
 
   .btn {
