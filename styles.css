@@ -1,4 +1,4 @@
-/* ========== RESET ========== */
+/* RESET */
 * {
   margin: 0;
   padding: 0;
@@ -13,7 +13,7 @@ html, body {
   color: #ffffff;
 }
 
-/* ========== HERO ========== */
+/* HERO */
 .hero {
   position: relative;
   width: 100%;
@@ -21,7 +21,7 @@ html, body {
   overflow: hidden;
 }
 
-/* ========== VIDEO ========== */
+/* VIDEO — NO FILTER */
 .hero-video {
   position: absolute;
   inset: 0;
@@ -29,13 +29,9 @@ html, body {
   height: 100%;
   object-fit: cover;
   z-index: 1;
-
-  /* subtle softening */
-  filter: brightness(0.92) contrast(0.95) saturate(0.92);
 }
 
-
-/* ========== OVERLAY ========== */
+/* OVERLAY — INI YANG KERJA */
 .hero-overlay {
   position: absolute;
   inset: 0;
@@ -48,8 +44,7 @@ html, body {
   z-index: 2;
 }
 
-
-/* ========== CONTENT ========== */
+/* CONTENT */
 .hero-content {
   position: relative;
   z-index: 3;
@@ -57,13 +52,12 @@ html, body {
   height: 100%;
   margin: 0 auto;
   padding: 0 32px;
-
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
-/* ========== BRAND ========== */
+/* BRAND */
 .hero-brand {
   letter-spacing: 0.32em;
   font-size: 12px;
@@ -71,7 +65,7 @@ html, body {
   margin-bottom: 22px;
 }
 
-/* ========== TITLE ========== */
+/* TITLE */
 .hero-content h1 {
   font-size: clamp(36px, 5vw, 64px);
   font-weight: 800;
@@ -79,7 +73,7 @@ html, body {
   margin-bottom: 22px;
 }
 
-/* ========== SUBTITLE ========== */
+/* SUBTITLE */
 .hero-subtitle {
   max-width: 640px;
   font-size: 16px;
@@ -88,13 +82,13 @@ html, body {
   margin-bottom: 38px;
 }
 
-/* ========== ACTIONS ========== */
+/* ACTIONS */
 .hero-actions {
   display: flex;
   gap: 16px;
 }
 
-/* ========== BUTTONS ========== */
+/* BUTTONS */
 .btn {
   padding: 14px 28px;
   border-radius: 10px;
@@ -104,7 +98,6 @@ html, body {
   transition: all 0.25s ease;
 }
 
-/* Primary */
 .btn-primary {
   background: #2563eb;
   color: #ffffff;
@@ -114,7 +107,6 @@ html, body {
   background: #1e40af;
 }
 
-/* Secondary */
 .btn-secondary {
   border: 1px solid rgba(255, 255, 255, 0.25);
   background: rgba(255, 255, 255, 0.05);
@@ -125,7 +117,7 @@ html, body {
   background: rgba(255, 255, 255, 0.12);
 }
 
-/* ========== MOBILE ========== */
+/* MOBILE */
 @media (max-width: 768px) {
   .hero-actions {
     flex-direction: column;
