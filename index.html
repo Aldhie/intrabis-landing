@@ -12,12 +12,12 @@
 
 <section class="hero">
 
-  <!-- VIDEO BACKGROUND -->
+  <!-- VIDEO BACKGROUND (NO BLUR) -->
   <video
-    id="heroVideo"
     class="hero-video"
     autoplay
     muted
+    loop
     playsinline
     preload="auto"
   >
@@ -48,19 +48,6 @@
   </div>
 
 </section>
-
-<!-- LOOP SMOOTHING SCRIPT -->
-<script>
-  const video = document.getElementById("heroVideo");
-
-  // Loop manual biar lebih halus
-  video.addEventListener("timeupdate", () => {
-    if (video.currentTime >= video.duration - 0.15) {
-      video.currentTime = 0.05;
-      video.play();
-    }
-  });
-</script>
 
 </body>
 </html>
