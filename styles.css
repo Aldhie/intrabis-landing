@@ -37,16 +37,14 @@ html, body {
 
 /* ========== OVERLAY ========== */
 .hero-overlay {
-  position: absolute;
-  inset: 0;
   background: linear-gradient(
     to bottom,
-    rgba(2, 6, 23, 0.55),
-    rgba(2, 6, 23, 0.45),
-    rgba(2, 6, 23, 0.75)
+    rgba(2, 6, 23, 0.6),
+    rgba(2, 6, 23, 0.5),
+    rgba(2, 6, 23, 0.78)
   );
-  z-index: 2;
 }
+
 
 /* ========== CONTENT ========== */
 .hero-content {
