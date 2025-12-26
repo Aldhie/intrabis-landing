@@ -30,7 +30,7 @@ html, body {
   object-fit: cover;
 
   /* 🔥 FINAL BLUR TUNING */
-  filter: blur(0.2px) brightness(1.7) contrast(1.1);
+  filter: blur(0.0px) brightness(1.7) contrast(1.1);
   transform: scale(1.03);
 
   z-index: 1;
