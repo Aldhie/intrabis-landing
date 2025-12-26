@@ -5,53 +5,62 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>IntraBis — Platform Manajemen Transportasi</title>
 
-  <!-- Font -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-
-  <!-- CSS -->
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 
-  <!-- ================= HERO SECTION ================= -->
-  <section class="hero">
+<section class="hero">
 
-    <!-- Video Background -->
-    <video
-      class="hero-video"
-      autoplay
-      muted
-      loop
-      playsinline
-      preload="auto"
-    >
-      <source src="intrabis_background.mp4" type="video/mp4" />
-    </video>
+  <!-- VIDEO BACKGROUND -->
+  <video
+    id="heroVideo"
+    class="hero-video"
+    autoplay
+    muted
+    playsinline
+    preload="auto"
+  >
+    <source src="intrabis_background.mp4" type="video/mp4" />
+  </video>
 
-    <!-- Overlay -->
-    <div class="hero-overlay"></div>
+  <!-- OVERLAY -->
+  <div class="hero-overlay"></div>
 
-    <!-- Content -->
-    <div class="hero-content">
-      <div class="hero-brand">INTRABIS</div>
+  <!-- CONTENT -->
+  <div class="hero-content">
+    <div class="hero-brand">INTRABIS</div>
 
-      <h1>
-        Menentukan Arah Baru<br />
-        bagi Bisnis Transportasi
-      </h1>
+    <h1>
+      Menentukan Arah Baru<br />
+      bagi Bisnis Transportasi
+    </h1>
 
-      <p class="hero-subtitle">
-        Platform terintegrasi untuk mengelola armada, tiket, rute, dan
-        operasional transportasi — dirancang untuk skala dan pertumbuhan.
-      </p>
+    <p class="hero-subtitle">
+      Platform terintegrasi untuk mengelola armada, tiket, rute, dan
+      operasional transportasi — dirancang untuk skala dan pertumbuhan.
+    </p>
 
-      <div class="hero-actions">
-        <a href="#" class="btn btn-primary">Jelajahi Ekosistem</a>
-        <a href="#" class="btn btn-secondary">Lihat Cara Kerjanya</a>
-      </div>
+    <div class="hero-actions">
+      <a href="#" class="btn btn-primary">Jelajahi Ekosistem</a>
+      <a href="#" class="btn btn-secondary">Lihat Cara Kerjanya</a>
     </div>
+  </div>
 
-  </section>
+</section>
+
+<!-- LOOP SMOOTHING SCRIPT -->
+<script>
+  const video = document.getElementById("heroVideo");
+
+  // Loop manual biar lebih halus
+  video.addEventListener("timeupdate", () => {
+    if (video.currentTime >= video.duration - 0.15) {
+      video.currentTime = 0.05;
+      video.play();
+    }
+  });
+</script>
 
 </body>
 </html>
