@@ -3,28 +3,35 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>IntraBIS — Platform Manajemen Transportasi Terintegrasi</title>
+  <title>IntraBIS — Platform Manajemen Transportasi</title>
 
-  <meta name="description" content="IntraBIS adalah platform ERP terintegrasi untuk bisnis transportasi: armada, tiket, rute, operasional, dan pertumbuhan jangka panjang." />
+  <!-- Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
+  <!-- CSS -->
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 
-  <!-- ================= HERO ================= -->
+  <!-- HERO -->
   <section class="hero">
 
     <!-- VIDEO BACKGROUND -->
-    <video class="hero-video" autoplay muted loop playsinline
-      poster="assets/img/hero-fallback.jpg">
-      <source src="assets/video/intrabis-background-road.mp4" type="video/mp4">
+    <video
+      class="hero-video"
+      autoplay
+      muted
+      loop
+      playsinline
+      preload="auto"
+    >
+      <source src="./assets/video/intrabis_background.mp4" type="video/mp4">
     </video>
 
     <!-- OVERLAY -->
     <div class="hero-overlay"></div>
-
-    <!-- SUBTLE MOTION -->
-    <div class="hero-motion"></div>
 
     <!-- CONTENT -->
     <div class="hero-content">
@@ -35,68 +42,19 @@
         bagi Bisnis Transportasi
       </h1>
 
-      <p>
+      <p class="subtitle">
         Platform terintegrasi untuk mengelola armada, tiket, rute,
-        dan operasional transportasi — dirancang untuk skala dan pertumbuhan.
+        dan operasional transportasi — dirancang untuk skala
+        dan pertumbuhan jangka panjang.
       </p>
 
-      <div class="hero-actions">
-        <a href="#" class="btn primary">Jelajahi Ekosistem</a>
-        <a href="#" class="btn ghost">Lihat Cara Kerjanya</a>
+      <div class="cta-group">
+        <a href="#ecosystem" class="btn btn-primary">Jelajahi Ekosistem</a>
+        <a href="#how" class="btn btn-secondary">Lihat Cara Kerjanya</a>
       </div>
     </div>
 
   </section>
-
-  <!-- ================= SECTION 2 ================= -->
-  <section class="section value">
-    <h2>Satu Sistem. Banyak Solusi.</h2>
-    <p class="section-desc">
-      IntraBIS menyatukan seluruh proses bisnis transportasi
-      ke dalam satu platform yang terstruktur dan terukur.
-    </p>
-
-    <div class="value-grid">
-      <div class="value-item">
-        <h3>Manajemen Armada</h3>
-        <p>Kontrol kendaraan, jadwal, dan utilisasi armada secara real-time.</p>
-      </div>
-      <div class="value-item">
-        <h3>Manajemen Tiket</h3>
-        <p>Sistem tiket terintegrasi dari penjualan hingga pelaporan.</p>
-      </div>
-      <div class="value-item">
-        <h3>Rute & Operasional</h3>
-        <p>Optimasi rute dan pengawasan operasional berbasis data.</p>
-      </div>
-      <div class="value-item">
-        <h3>Keuangan & Insight</h3>
-        <p>Laporan keuangan dan analitik untuk keputusan strategis.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ================= SECTION 3 ================= -->
-  <section class="section vision">
-    <h2>Dibangun untuk Bertumbuh</h2>
-    <p class="section-desc">
-      IntraBIS bukan sekadar software hari ini,
-      tapi fondasi digital untuk masa depan bisnis transportasi.
-    </p>
-
-    <div class="vision-box">
-      <p>
-        Dari operator lokal hingga skala nasional,
-        IntraBIS dirancang modular, fleksibel,
-        dan siap berkembang bersama bisnis Anda.
-      </p>
-    </div>
-  </section>
-
-  <!-- ================= FOOTER ================= -->
-  <footer class="footer">
-    <p>© 2025 IntraBIS. All rights reserved.</p>
-  </footer>
 
 </body>
 </html>
