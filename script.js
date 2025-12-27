@@ -1,59 +1,24 @@
-// Smooth scroll for anchor links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
-        }
-    });
-});
+const videoA = document.getElementById("videoA");
+const videoB = document.getElementById("videoB");
 
-// Video fallback handling
-const video = document.querySelector('.hero-video');
-if (video) {
-    video.addEventListener('error', function() {
-        // If video fails to load, ensure poster image is shown
-        this.style.display = 'none';
-    });
-    
-    // Check if video can play
-    video.addEventListener('loadeddata', function() {
-        this.play().catch(function() {
-            // Autoplay failed, video will show poster
-        });
-    });
-}
+let active = videoA;
+let idle = videoB;
 
-// Intersection Observer for scroll animations
-const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-};
+// Start first video
+videoA.play();
 
-const observer = new IntersectionObserver(function(entries) {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
-        }
-    });
-}, observerOptions);
+setInterval(() => {
+  if (!active.duration) return;
 
-// Observe sections for fade-in animation
-document.querySelectorAll('section').forEach(section => {
-    section.style.opacity = '0';
-    section.style.transform = 'translateY(30px)';
-    section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-    observer.observe(section);
-});
+  // Trigger crossfade slightly before end
+  if (active.duration - active.currentTime < 0.7) {
+    idle.currentTime = 0;
+    idle.play();
 
-// Make hero section immediately visible
-const heroSection = document.querySelector('.hero');
-if (heroSection) {
-    heroSection.style.opacity = '1';
-    heroSection.style.transform = 'translateY(0)';
-}
+    idle.style.opacity = 1;
+    active.style.opacity = 0;
+
+    // Swap roles
+    [active, idle] = [idle, active];
+  }
+}, 200);
