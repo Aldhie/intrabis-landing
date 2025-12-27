@@ -5,24 +5,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>IntraBis — Platform Manajemen Transportasi</title>
 
+  <!-- Font -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- CSS -->
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 
 <section class="hero">
 
-  <!-- VIDEO BACKGROUND (NO BLUR) -->
-  <video
-    class="hero-video"
-    autoplay
-    muted
-    loop
-    playsinline
-    preload="auto"
-  >
-    <source src="intrabis_background.mp4" type="video/mp4" />
-  </video>
+  <!-- VIDEO BACKGROUND (DUAL VIDEO LOOP) -->
+  <div class="video-wrapper">
+    <video id="videoA" autoplay muted playsinline preload="auto">
+      <source src="intrabis_background.mp4" type="video/mp4">
+    </video>
+
+    <video id="videoB" muted playsinline preload="auto">
+      <source src="intrabis_background.mp4" type="video/mp4">
+    </video>
+  </div>
 
   <!-- OVERLAY -->
   <div class="hero-overlay"></div>
@@ -48,6 +50,9 @@
   </div>
 
 </section>
+
+<!-- JS -->
+<script src="script.js"></script>
 
 </body>
 </html>
