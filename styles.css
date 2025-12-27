@@ -1,4 +1,4 @@
-/* RESET */
+/* ========== RESET ========== */
 * {
   margin: 0;
   padding: 0;
@@ -13,7 +13,7 @@ html, body {
   color: #ffffff;
 }
 
-/* HERO */
+/* ========== HERO ========== */
 .hero {
   position: relative;
   width: 100%;
@@ -21,30 +21,45 @@ html, body {
   overflow: hidden;
 }
 
-/* VIDEO — NO FILTER */
-.hero-video {
+/* ========== VIDEO WRAPPER ========== */
+.video-wrapper {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+/* ========== VIDEO LAYER ========== */
+.video-wrapper video {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  z-index: 1;
+
+  /* subtle softening (NOT blur) */
+  filter: brightness(0.92) contrast(0.95) saturate(0.92);
+
+  transition: opacity 0.6s linear;
 }
 
-/* OVERLAY — INI YANG KERJA */
+#videoB {
+  opacity: 0;
+}
+
+/* ========== OVERLAY ========== */
 .hero-overlay {
   position: absolute;
   inset: 0;
   background: linear-gradient(
     to bottom,
-    rgba(2, 6, 23, 0.55),
-    rgba(2, 6, 23, 0.45),
-    rgba(2, 6, 23, 0.75)
+    rgba(2, 6, 23, 0.6),
+    rgba(2, 6, 23, 0.5),
+    rgba(2, 6, 23, 0.78)
   );
   z-index: 2;
 }
 
-/* CONTENT */
+/* ========== CONTENT ========== */
 .hero-content {
   position: relative;
   z-index: 3;
@@ -52,6 +67,7 @@ html, body {
   height: 100%;
   margin: 0 auto;
   padding: 0 32px;
+
   display: flex;
   flex-direction: column;
   justify-content: center;
