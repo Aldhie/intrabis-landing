@@ -3,7 +3,7 @@ FROM nginx:alpine
 
 # Set maintainer label
 LABEL maintainer="Aldhie <info@intrabis.id>"
-LABEL description="IntraBis Landing Page - Integrated Transportation Platform"
+LABEL description="IntraBis Landing Page - Integrated Management Transportation Platform"
 
 # Remove default Nginx website
 RUN rm -rf /usr/share/nginx/html/*
