@@ -41,6 +41,9 @@ if (heroFeatures && hero) {
 
     stickyClone.classList.toggle('visible', shouldShow);
     spacer.classList.toggle('active', shouldShow);
+    
+    // Hide original hero-features saat sticky muncul (avoid double text)
+    heroFeatures.classList.toggle('hide', shouldShow);
 
     ticking = false;
   }
