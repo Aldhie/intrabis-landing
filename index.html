@@ -8,21 +8,8 @@
 </head>
 <body>
 
-<!-- Sticky menu (muncul setelah hero lewat) -->
-<nav class="sticky-menu" aria-label="IntraBIS sections">
-  <a href="#problem">Fleet management</a>
-  <span class="separator">•</span>
-  <a href="#ticketing">Ticketing</a>
-  <span class="separator">•</span>
-  <a href="#route">Route planning</a>
-  <span class="separator">•</span>
-  <a href="#finance">Finance</a>
-  <span class="separator">•</span>
-  <a href="#analytics">Analytics</a>
-</nav>
-
 <!-- ================= HERO SECTION ================= -->
-<section class="hero" id="top">
+<section class="hero">
 
   <!-- Single video dengan seamless loop via JavaScript -->
   <video
@@ -52,8 +39,8 @@
     </p>
   </div>
 
-  <!-- Features text overlay di bagian bawah -->
-  <div class="hero-features" aria-hidden="true">
+  <!-- Features text overlay: position sticky, stay di bottom hero sampai scroll ke atas -->
+  <div class="hero-features">
     <span>FLEET MANAGEMENT</span>
     <span class="separator">•</span>
     <span>TICKETING</span>
@@ -68,7 +55,7 @@
 </section>
 
 <!-- ================= SECTION 2 ================= -->
-<section class="section problem" id="problem">
+<section class="section problem">
   <div class="container two-column">
 
     <div>
@@ -85,22 +72,22 @@
     </div>
 
     <div class="cards">
-      <div class="card" id="ticketing">
+      <div class="card">
         <h4>Operasional Terfragmentasi</h4>
         <p>Armada, driver, rute, tiket, dan keuangan berjalan terpisah.</p>
       </div>
 
-      <div class="card" id="route">
+      <div class="card">
         <h4>Visibilitas Terbatas</h4>
         <p>Keputusan dibuat dari data yang terlambat dan tidak utuh.</p>
       </div>
 
-      <div class="card" id="finance">
+      <div class="card">
         <h4>Ketergantungan Manual</h4>
         <p>Pertumbuhan justru menambah risiko operasional.</p>
       </div>
 
-      <div class="card" id="analytics">
+      <div class="card">
         <h4>Skalabilitas Terhambat</h4>
         <p>Semakin besar, semakin sulit dikendalikan.</p>
       </div>

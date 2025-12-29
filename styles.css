@@ -23,50 +23,6 @@ p {
   opacity: 0.85;
 }
 
-/* Sticky menu */
-.sticky-menu {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 1000;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-
-  padding: 14px 18px;
-  background: rgba(15, 17, 19, 0.72);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-
-  transform: translateY(-120%);
-  transition: transform 220ms ease;
-}
-
-body.menu-visible .sticky-menu {
-  transform: translateY(0);
-}
-
-.sticky-menu a {
-  color: rgba(230, 230, 230, 0.9);
-  text-decoration: none;
-  font-size: 11px;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-}
-
-.sticky-menu a:hover {
-  color: #ffffff;
-}
-
-.sticky-menu .separator {
-  opacity: 0.35;
-  font-size: 12px;
-}
-
 .hero {
   position: relative;
   height: 100vh;
@@ -132,34 +88,46 @@ body.menu-visible .sticky-menu {
   margin: 20px 0;
 }
 
-/* Features text overlay di bagian bawah hero */
+/* Features text: sticky di bagian bawah hero, naik ke top saat scroll */
 .hero-features {
-  position: absolute;
+  position: sticky;
+  top: 0;
   bottom: 40px;
-  left: 0;
-  right: 0;
-  text-align: center;
-  z-index: 3;
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  
+  padding: 16px 20px;
+  margin-top: calc(100vh - 70px);
+  
+  background: rgba(15, 17, 19, 0.75);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  
+  z-index: 100;
+  
   font-size: 11px;
   letter-spacing: 0.15em;
   color: #e6e6e6;
-  opacity: 0.8;
+  opacity: 0.9;
   font-weight: 400;
+  text-align: center;
 }
 
 .hero-features span {
   display: inline-block;
-  margin: 0 4px;
+  white-space: nowrap;
 }
 
 .hero-features .separator {
   opacity: 0.4;
-  margin: 0 8px;
 }
 
 .section {
   padding: 120px 40px;
-  scroll-margin-top: 76px;
 }
 
 .container {
@@ -246,21 +214,14 @@ body.menu-visible .sticky-menu {
   
   .hero-features {
     font-size: 9px;
-    bottom: 30px;
-    padding: 0 20px;
-  }
-  
-  .hero-features .separator {
-    margin: 0 4px;
-  }
-
-  .sticky-menu {
-    justify-content: flex-start;
+    gap: 4px;
+    padding: 14px 16px;
     overflow-x: auto;
-    white-space: nowrap;
+    justify-content: flex-start;
     -webkit-overflow-scrolling: touch;
   }
-  .sticky-menu::-webkit-scrollbar {
+  
+  .hero-features::-webkit-scrollbar {
     display: none;
   }
 }
