@@ -88,42 +88,29 @@ p {
   margin: 20px 0;
 }
 
-/* Features text: sticky di bagian bawah hero, naik ke top saat scroll */
+/* Features text overlay di bagian bawah hero - KEMBALI KE SEMULA */
 .hero-features {
-  position: sticky;
-  top: 0;
+  position: absolute;
   bottom: 40px;
-  
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  
-  padding: 16px 20px;
-  margin-top: calc(100vh - 70px);
-  
-  background: rgba(15, 17, 19, 0.75);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  
-  z-index: 100;
-  
+  left: 0;
+  right: 0;
+  text-align: center;
+  z-index: 3;
   font-size: 11px;
   letter-spacing: 0.15em;
   color: #e6e6e6;
-  opacity: 0.9;
+  opacity: 0.8;
   font-weight: 400;
-  text-align: center;
 }
 
 .hero-features span {
   display: inline-block;
-  white-space: nowrap;
+  margin: 0 4px;
 }
 
 .hero-features .separator {
   opacity: 0.4;
+  margin: 0 8px;
 }
 
 .section {
@@ -214,14 +201,11 @@ p {
   
   .hero-features {
     font-size: 9px;
-    gap: 4px;
-    padding: 14px 16px;
-    overflow-x: auto;
-    justify-content: flex-start;
-    -webkit-overflow-scrolling: touch;
+    bottom: 30px;
+    padding: 0 20px;
   }
   
-  .hero-features::-webkit-scrollbar {
-    display: none;
+  .hero-features .separator {
+    margin: 0 4px;
   }
 }
