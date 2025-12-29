@@ -123,46 +123,60 @@ p {
   height: 56px;
 }
 
-/* Sticky clone - ULTRA SMOOTH seperti Google dengan transparency tinggi */
+/* ULTIMATE FROSTED GLASS - Menyamai Google dengan precision tinggi */
 .hero-features-sticky {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  z-index: 1000;
+  z-index: 900;
 
-  padding: 16px 20px 22px;
+  padding: 17px 20px 24px;
   text-align: center;
 
   font-size: 11px;
   letter-spacing: 0.15em;
-  /* Text lebih terang untuk kontras dengan transparency tinggi */
-  color: #f5f5f5;
+  color: #ffffff;
   opacity: 0;
   font-weight: 400;
 
-  /* Ultra-smooth frosted glass seperti Google:
-     - Background SANGAT transparan (0.25 = 75% transparan)
-     - Blur SANGAT aggressive (32px)
-     - Saturate tinggi untuk warna vibrant
-     - Gradient fade sangat subtle
+  /* Premium frosted glass formula:
+     - Blue-grey tint untuk warmth (bukan pure black)
+     - Ultra high transparency (0.15 = 85% transparan)
+     - Extreme blur (40px) untuk maximum smoothness
+     - High saturate untuk vibrant colors
+     - Brightness boost untuk premium look
+     - Gradient fade sangat subtle ke bawah
   */
   background: linear-gradient(
     to bottom,
-    rgba(15, 17, 19, 0.25) 0%,
-    rgba(15, 17, 19, 0.2) 60%,
-    rgba(15, 17, 19, 0) 100%
+    rgba(25, 32, 42, 0.15) 0%,
+    rgba(20, 26, 35, 0.12) 55%,
+    rgba(15, 20, 28, 0.08) 85%,
+    rgba(10, 15, 22, 0) 100%
   );
-  backdrop-filter: blur(32px) saturate(180%) brightness(1.08);
-  -webkit-backdrop-filter: blur(32px) saturate(180%) brightness(1.08);
   
-  /* NO border, shadow sangat subtle */
+  /* Extreme blur + color enhancement untuk premium frosted effect */
+  backdrop-filter: blur(40px) saturate(200%) brightness(1.15) contrast(1.05);
+  -webkit-backdrop-filter: blur(40px) saturate(200%) brightness(1.15) contrast(1.05);
+  
+  /* NO border, premium shadow dengan multiple layers */
   border: none;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+  box-shadow: 
+    0 1px 2px rgba(0, 0, 0, 0.02),
+    0 2px 8px rgba(0, 0, 0, 0.03),
+    0 4px 16px rgba(0, 0, 0, 0.04);
 
   pointer-events: none;
   transform: translateY(-100%);
-  transition: opacity 0.25s ease, transform 0.25s ease;
+  transition: 
+    opacity 0.28s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+  
+  /* Smooth rendering */
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  -webkit-font-smoothing: antialiased;
 }
 
 .hero-features-sticky.visible {
@@ -174,10 +188,11 @@ p {
 .hero-features-sticky span {
   display: inline-block;
   margin: 0 4px;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 }
 
 .hero-features-sticky .separator {
-  opacity: 0.3;
+  opacity: 0.25;
   margin: 0 8px;
 }
 
@@ -278,12 +293,12 @@ p {
   }
 
   .sticky-spacer.active {
-    height: 50px;
+    height: 52px;
   }
 
   .hero-features-sticky {
     font-size: 9px;
-    padding: 14px 16px 20px;
+    padding: 15px 16px 22px;
   }
 
   .hero-features-sticky .separator {
