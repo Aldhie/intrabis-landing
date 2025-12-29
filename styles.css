@@ -123,7 +123,7 @@ p {
   height: 56px;
 }
 
-/* Sticky clone dengan frosted glass / backdrop blur effect - IMPROVED */
+/* Sticky clone dengan frosted glass seperti Google - NO BORDER, gradient fade */
 .hero-features-sticky {
   position: fixed;
   top: 0;
@@ -131,7 +131,7 @@ p {
   right: 0;
   z-index: 1000;
 
-  padding: 16px 20px;
+  padding: 16px 20px 20px;
   text-align: center;
 
   font-size: 11px;
@@ -140,18 +140,23 @@ p {
   opacity: 0;
   font-weight: 400;
 
-  /* Frosted glass effect yang lebih smooth dan transparan */
-  background: rgba(15, 17, 19, 0.55);
-  backdrop-filter: blur(20px) saturate(200%) brightness(1.1);
-  -webkit-backdrop-filter: blur(20px) saturate(200%) brightness(1.1);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  /* Frosted glass dengan gradient fade di bawah (no hard border) */
+  background: linear-gradient(
+    to bottom,
+    rgba(15, 17, 19, 0.5) 0%,
+    rgba(15, 17, 19, 0.45) 70%,
+    rgba(15, 17, 19, 0) 100%
+  );
+  backdrop-filter: blur(24px) saturate(180%) brightness(1.05);
+  -webkit-backdrop-filter: blur(24px) saturate(180%) brightness(1.05);
   
-  /* Shadow lebih lembut */
-  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.06), 0 2px 12px rgba(0, 0, 0, 0.1);
+  /* NO border, hanya subtle shadow */
+  border: none;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 
   pointer-events: none;
   transform: translateY(-100%);
-  transition: opacity 0.22s ease, transform 0.22s ease;
+  transition: opacity 0.25s ease, transform 0.25s ease;
 }
 
 .hero-features-sticky.visible {
@@ -272,7 +277,7 @@ p {
 
   .hero-features-sticky {
     font-size: 9px;
-    padding: 14px 16px;
+    padding: 14px 16px 18px;
   }
 
   .hero-features-sticky .separator {
