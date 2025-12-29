@@ -120,10 +120,10 @@ p {
 }
 
 .sticky-spacer.active {
-  height: 56px;
+  height: 60px;
 }
 
-/* ULTIMATE FROSTED GLASS - Menyamai Google dengan precision tinggi */
+/* PERFECT GOOGLE BLEND - Seamless gradient, zero separation, fully blended */
 .hero-features-sticky {
   position: fixed;
   top: 0;
@@ -131,7 +131,7 @@ p {
   right: 0;
   z-index: 900;
 
-  padding: 17px 20px 24px;
+  padding: 18px 20px 28px;
   text-align: center;
 
   font-size: 11px;
@@ -140,38 +140,36 @@ p {
   opacity: 0;
   font-weight: 400;
 
-  /* Premium frosted glass formula:
-     - Blue-grey tint untuk warmth (bukan pure black)
-     - Ultra high transparency (0.15 = 85% transparan)
-     - Extreme blur (40px) untuk maximum smoothness
-     - High saturate untuk vibrant colors
-     - Brightness boost untuk premium look
-     - Gradient fade sangat subtle ke bawah
+  /* SEAMLESS BLENDED GRADIENT - Key to Google's look:
+     - Start with very subtle opacity (0.12)
+     - Gradual fade through multiple stops
+     - End with full transparency (0) untuk seamless blend
+     - Blue-grey tint untuk warmth
   */
   background: linear-gradient(
     to bottom,
-    rgba(25, 32, 42, 0.15) 0%,
-    rgba(20, 26, 35, 0.12) 55%,
-    rgba(15, 20, 28, 0.08) 85%,
-    rgba(10, 15, 22, 0) 100%
+    rgba(28, 35, 48, 0.12) 0%,
+    rgba(24, 30, 42, 0.10) 25%,
+    rgba(20, 26, 36, 0.08) 45%,
+    rgba(16, 22, 32, 0.05) 65%,
+    rgba(12, 18, 28, 0.03) 80%,
+    rgba(10, 15, 24, 0.01) 92%,
+    rgba(8, 12, 20, 0) 100%
   );
   
-  /* Extreme blur + color enhancement untuk premium frosted effect */
-  backdrop-filter: blur(40px) saturate(200%) brightness(1.15) contrast(1.05);
-  -webkit-backdrop-filter: blur(40px) saturate(200%) brightness(1.15) contrast(1.05);
+  /* EXTREME blur untuk maximum seamless blending */
+  backdrop-filter: blur(48px) saturate(180%) brightness(1.12);
+  -webkit-backdrop-filter: blur(48px) saturate(180%) brightness(1.12);
   
-  /* NO border, premium shadow dengan multiple layers */
+  /* ABSOLUTELY NO border or shadow - pure blended look */
   border: none;
-  box-shadow: 
-    0 1px 2px rgba(0, 0, 0, 0.02),
-    0 2px 8px rgba(0, 0, 0, 0.03),
-    0 4px 16px rgba(0, 0, 0, 0.04);
+  box-shadow: none;
 
   pointer-events: none;
   transform: translateY(-100%);
   transition: 
-    opacity 0.28s cubic-bezier(0.4, 0, 0.2, 1),
-    transform 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+    opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   
   /* Smooth rendering */
   will-change: transform, opacity;
@@ -188,11 +186,12 @@ p {
 .hero-features-sticky span {
   display: inline-block;
   margin: 0 4px;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  /* Very subtle text shadow for readability without separation */
+  text-shadow: 0 0 8px rgba(0, 0, 0, 0.15);
 }
 
 .hero-features-sticky .separator {
-  opacity: 0.25;
+  opacity: 0.22;
   margin: 0 8px;
 }
 
@@ -293,12 +292,12 @@ p {
   }
 
   .sticky-spacer.active {
-    height: 52px;
+    height: 54px;
   }
 
   .hero-features-sticky {
     font-size: 9px;
-    padding: 15px 16px 22px;
+    padding: 16px 16px 26px;
   }
 
   .hero-features-sticky .separator {
