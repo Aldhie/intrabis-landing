@@ -11,13 +11,24 @@
 <!-- ================= HERO SECTION ================= -->
 <section class="hero">
 
+  <!-- Dual video untuk seamless loop dengan crossfade -->
   <video
+    id="videoA"
     class="hero-video"
-    autoplay
     muted
-    loop
     playsinline
     preload="auto"
+  >
+    <source src="intrabis_background.mp4" type="video/mp4">
+  </video>
+
+  <video
+    id="videoB"
+    class="hero-video"
+    muted
+    playsinline
+    preload="auto"
+    style="opacity: 0;"
   >
     <source src="intrabis_background.mp4" type="video/mp4">
   </video>
@@ -217,5 +228,6 @@
   </div>
 </footer>
 
+<script src="script.js"></script>
 </body>
 </html>
