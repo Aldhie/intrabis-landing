@@ -120,10 +120,10 @@ p {
 }
 
 .sticky-spacer.active {
-  height: 68px;
+  height: 72px;
 }
 
-/* ULTRA EXTREME INVISIBLE BLEND dengan Google Typography */
+/* OPTIMIZED BALANCE - Readability + Seamless Blend */
 .hero-features-sticky {
   position: fixed;
   top: 0;
@@ -131,45 +131,51 @@ p {
   right: 0;
   z-index: 900;
 
-  /* Extended padding untuk lebih banyak blend area */
-  padding: 20px 20px 40px;
+  /* Extended padding untuk massive blend area */
+  padding: 22px 20px 50px;
   text-align: center;
 
-  /* Google-style typography - larger, tighter spacing, medium weight */
+  /* Google-style typography */
   font-size: 13.5px;
   letter-spacing: 0.02em;
   color: #ffffff;
   opacity: 0;
   font-weight: 450;
 
-  /* ULTRA-LOW opacity gradient dengan 10 stops untuk maximum smoothness */
+  /* BALANCED GRADIENT - Slightly higher opacity untuk cover gap, extended fade:
+     - Start dari 0.10 (90% transparan) - balance antara visibility & blend
+     - 12 stops untuk ultra-smooth transition
+     - Extended gradient area dengan padding 50px
+  */
   background: linear-gradient(
     to bottom,
-    rgba(22, 28, 38, 0.06) 0%,
-    rgba(20, 26, 36, 0.05) 15%,
-    rgba(18, 24, 34, 0.04) 28%,
-    rgba(16, 22, 32, 0.032) 40%,
-    rgba(14, 20, 30, 0.024) 52%,
-    rgba(12, 18, 28, 0.018) 64%,
-    rgba(10, 16, 26, 0.012) 75%,
-    rgba(9, 14, 24, 0.008) 85%,
-    rgba(8, 13, 22, 0.004) 93%,
-    rgba(7, 12, 20, 0) 100%
+    rgba(24, 30, 42, 0.10) 0%,
+    rgba(22, 28, 40, 0.085) 12%,
+    rgba(20, 26, 38, 0.070) 22%,
+    rgba(18, 24, 36, 0.057) 32%,
+    rgba(16, 22, 34, 0.046) 42%,
+    rgba(14, 20, 32, 0.036) 52%,
+    rgba(12, 18, 30, 0.027) 62%,
+    rgba(10, 16, 28, 0.019) 72%,
+    rgba(9, 15, 26, 0.013) 81%,
+    rgba(8, 14, 24, 0.008) 89%,
+    rgba(7, 13, 22, 0.004) 95%,
+    rgba(6, 12, 20, 0) 100%
   );
   
-  /* ULTRA MASSIVE BLUR untuk invisible blending */
-  backdrop-filter: blur(80px) saturate(160%) brightness(1.08);
-  -webkit-backdrop-filter: blur(80px) saturate(160%) brightness(1.08);
+  /* INSANE BLUR (100px) untuk maximum seamless coverage */
+  backdrop-filter: blur(100px) saturate(150%) brightness(1.1) contrast(1.02);
+  -webkit-backdrop-filter: blur(100px) saturate(150%) brightness(1.1) contrast(1.02);
   
-  /* Absolutely zero separation */
+  /* Zero separation */
   border: none;
   box-shadow: none;
 
   pointer-events: none;
   transform: translateY(-100%);
   transition: 
-    opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1),
-    transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   
   /* Ultra smooth rendering */
   will-change: transform, opacity;
@@ -187,8 +193,11 @@ p {
 .hero-features-sticky span {
   display: inline-block;
   margin: 0 6px;
-  /* Soft glow untuk readability tanpa hard shadow */
-  text-shadow: 0 0 12px rgba(0, 0, 0, 0.2), 0 1px 3px rgba(0, 0, 0, 0.1);
+  /* Enhanced text shadow untuk better readability dengan slight opacity increase */
+  text-shadow: 
+    0 0 16px rgba(0, 0, 0, 0.25),
+    0 1px 4px rgba(0, 0, 0, 0.15),
+    0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .hero-features-sticky .separator {
@@ -293,13 +302,13 @@ p {
   }
 
   .sticky-spacer.active {
-    height: 60px;
+    height: 64px;
   }
 
   .hero-features-sticky {
     font-size: 11px;
     letter-spacing: 0.01em;
-    padding: 18px 16px 36px;
+    padding: 20px 16px 44px;
   }
 
   .hero-features-sticky span {
