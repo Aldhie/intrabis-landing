@@ -35,7 +35,33 @@ p {
 .hero-overlay {
   position: absolute;
   inset: 0;
-  background: rgba(10, 12, 14, 0.55);
+  background: linear-gradient(
+    to bottom,
+    rgba(10, 12, 14, 0.55) 0%,
+    rgba(10, 12, 14, 0.65) 60%,
+    rgba(15, 17, 19, 0.85) 85%,
+    #0f1113 100%
+  );
+}
+
+/* Gradient tambahan di bagian bawah untuk transisi lebih smooth */
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 250px;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(15, 17, 19, 0.3) 25%,
+    rgba(15, 17, 19, 0.6) 50%,
+    rgba(15, 17, 19, 0.9) 75%,
+    #0f1113 100%
+  );
+  pointer-events: none;
+  z-index: 1;
 }
 
 .hero-content {
@@ -44,6 +70,7 @@ p {
   padding: 0 40px;
   top: 50%;
   transform: translateY(-50%);
+  z-index: 2;
 }
 
 .hero-label {
@@ -55,6 +82,31 @@ p {
 .hero h1 {
   font-size: 42px;
   margin: 20px 0;
+}
+
+/* Features text overlay di bagian bawah hero */
+.hero-features {
+  position: absolute;
+  bottom: 40px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  z-index: 3;
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  color: #e6e6e6;
+  opacity: 0.8;
+  font-weight: 400;
+}
+
+.hero-features span {
+  display: inline-block;
+  margin: 0 4px;
+}
+
+.hero-features .separator {
+  opacity: 0.4;
+  margin: 0 8px;
 }
 
 .section {
@@ -137,5 +189,19 @@ p {
     flex-direction: column;
     gap: 20px;
     text-align: center;
+  }
+  
+  .hero::after {
+    height: 150px;
+  }
+  
+  .hero-features {
+    font-size: 9px;
+    bottom: 30px;
+    padding: 0 20px;
+  }
+  
+  .hero-features .separator {
+    margin: 0 4px;
   }
 }
