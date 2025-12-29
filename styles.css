@@ -88,7 +88,7 @@ p {
   margin: 20px 0;
 }
 
-/* Features text overlay di bagian bawah hero - KEMBALI KE SEMULA */
+/* Features text overlay di bagian bawah hero */
 .hero-features {
   position: absolute;
   bottom: 40px;
@@ -109,6 +109,48 @@ p {
 }
 
 .hero-features .separator {
+  opacity: 0.4;
+  margin: 0 8px;
+}
+
+/* Sticky clone (dibuat via JavaScript) */
+.hero-features-sticky {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  
+  padding: 16px 20px;
+  text-align: center;
+  
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  color: #e6e6e6;
+  opacity: 0;
+  font-weight: 400;
+  
+  /* Transparan, no background/border */
+  background: transparent;
+  border: none;
+  
+  pointer-events: none;
+  transform: translateY(-100%);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.hero-features-sticky.visible {
+  opacity: 0.8;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.hero-features-sticky span {
+  display: inline-block;
+  margin: 0 4px;
+}
+
+.hero-features-sticky .separator {
   opacity: 0.4;
   margin: 0 8px;
 }
@@ -207,5 +249,10 @@ p {
   
   .hero-features .separator {
     margin: 0 4px;
+  }
+  
+  .hero-features-sticky {
+    font-size: 9px;
+    padding: 14px 16px;
   }
 }
