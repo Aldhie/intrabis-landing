@@ -113,36 +113,45 @@ p {
   margin: 0 8px;
 }
 
-/* Sticky clone (dibuat via JavaScript) */
+/* Spacer untuk mendorong konten turun saat sticky muncul (biar tidak "menumpuk") */
+.sticky-spacer {
+  height: 0;
+  transition: height 220ms ease;
+}
+
+.sticky-spacer.active {
+  height: 52px;
+}
+
+/* Sticky clone (dibuat via JavaScript) - tetap transparan */
 .hero-features-sticky {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   z-index: 1000;
-  
-  padding: 16px 20px;
+
+  padding: 14px 20px;
   text-align: center;
-  
+
   font-size: 11px;
   letter-spacing: 0.15em;
   color: #e6e6e6;
   opacity: 0;
   font-weight: 400;
-  
+
   /* Transparan, no background/border */
   background: transparent;
   border: none;
-  
+
   pointer-events: none;
   transform: translateY(-100%);
-  transition: opacity 0.3s ease, transform 0.3s ease;
+  transition: opacity 0.22s ease, transform 0.22s ease;
 }
 
 .hero-features-sticky.visible {
   opacity: 0.8;
   transform: translateY(0);
-  pointer-events: auto;
 }
 
 .hero-features-sticky span {
@@ -236,23 +245,31 @@ p {
     gap: 20px;
     text-align: center;
   }
-  
+
   .hero::after {
     height: 150px;
   }
-  
+
   .hero-features {
     font-size: 9px;
     bottom: 30px;
     padding: 0 20px;
   }
-  
+
   .hero-features .separator {
     margin: 0 4px;
   }
-  
+
+  .sticky-spacer.active {
+    height: 46px;
+  }
+
   .hero-features-sticky {
     font-size: 9px;
-    padding: 14px 16px;
+    padding: 12px 16px;
+  }
+
+  .hero-features-sticky .separator {
+    margin: 0 4px;
   }
 }
