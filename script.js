@@ -20,18 +20,31 @@ const heroFeatures = document.querySelector('.hero-features');
 const hero = document.querySelector('.hero');
 
 if (heroFeatures && hero) {
-  // Spacer supaya konten tidak ketutup sticky (menghindari "menumpuk")
-  const spacer = document.createElement('div');
-  spacer.className = 'sticky-spacer';
-  document.body.insertBefore(spacer, document.body.firstChild);
-
-  // Buat clone sticky
+  // FIXED: Create elements with proper DOM order
   const stickyClone = document.createElement('div');
   stickyClone.className = 'hero-features-sticky';
   stickyClone.innerHTML = heroFeatures.innerHTML;
-  document.body.insertBefore(stickyClone, spacer.nextSibling);
+  
+  const spacer = document.createElement('div');
+  spacer.className = 'sticky-spacer';
+
+  // FIXED: Insert AFTER hero section, not before
+  // DOM order: [hero] → [spacer] → [next section]
+  // sticky is fixed, outside normal flow
+  const heroParent = hero.parentElement;
+  const nextSibling = hero.nextElementSibling;
+  
+  if (nextSibling) {
+    heroParent.insertBefore(spacer, nextSibling);
+  } else {
+    heroParent.appendChild(spacer);
+  }
+  
+  // Sticky clone appended to body for global z-index context
+  document.body.appendChild(stickyClone);
 
   let ticking = false;
+  let scrollTimeout = null;
 
   function updateStickyVisibility() {
     const heroBottom = hero.getBoundingClientRect().bottom;
@@ -45,15 +58,40 @@ if (heroFeatures && hero) {
     // Hide original hero-features saat sticky muncul (avoid double text)
     heroFeatures.classList.toggle('hide', shouldShow);
 
+    // FIXED: Add will-change during scroll, remove after
+    stickyClone.classList.add('scrolling');
+    
+    // FIXED: Remove will-change after scroll stops (performance)
+    clearTimeout(scrollTimeout);
+    scrollTimeout = setTimeout(() => {
+      stickyClone.classList.remove('scrolling');
+    }, 150);
+
     ticking = false;
   }
 
-  window.addEventListener('scroll', () => {
+  // FIXED: Store scroll listener reference for cleanup
+  const scrollHandler = () => {
     if (!ticking) {
       window.requestAnimationFrame(updateStickyVisibility);
       ticking = true;
     }
-  });
+  };
+
+  window.addEventListener('scroll', scrollHandler, { passive: true });
+
+  // FIXED: Cleanup function for SPA navigation or page unload
+  // Expose cleanup globally if needed by SPA framework
+  window.cleanupStickyFeatures = () => {
+    window.removeEventListener('scroll', scrollHandler);
+    clearTimeout(scrollTimeout);
+    if (stickyClone && stickyClone.parentElement) {
+      stickyClone.remove();
+    }
+    if (spacer && spacer.parentElement) {
+      spacer.remove();
+    }
+  };
 
   // Initial check
   updateStickyVisibility();
