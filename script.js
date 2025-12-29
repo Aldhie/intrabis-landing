@@ -20,7 +20,7 @@ const heroFeatures = document.querySelector('.hero-features');
 const hero = document.querySelector('.hero');
 
 if (heroFeatures && hero) {
-  // FIXED: Create elements with proper DOM order
+  // Create elements with proper DOM order
   const stickyClone = document.createElement('div');
   stickyClone.className = 'hero-features-sticky';
   stickyClone.innerHTML = heroFeatures.innerHTML;
@@ -28,9 +28,7 @@ if (heroFeatures && hero) {
   const spacer = document.createElement('div');
   spacer.className = 'sticky-spacer';
 
-  // FIXED: Insert AFTER hero section, not before
-  // DOM order: [hero] → [spacer] → [next section]
-  // sticky is fixed, outside normal flow
+  // Insert AFTER hero section
   const heroParent = hero.parentElement;
   const nextSibling = hero.nextElementSibling;
   
@@ -48,6 +46,7 @@ if (heroFeatures && hero) {
 
   function updateStickyVisibility() {
     const heroBottom = hero.getBoundingClientRect().bottom;
+    const scrollY = window.scrollY;
 
     // Tampilkan sticky clone jika hero sudah lewat
     const shouldShow = heroBottom <= 0;
@@ -55,13 +54,32 @@ if (heroFeatures && hero) {
     stickyClone.classList.toggle('visible', shouldShow);
     spacer.classList.toggle('active', shouldShow);
     
-    // Hide original hero-features saat sticky muncul (avoid double text)
+    // Hide original hero-features saat sticky muncul
     heroFeatures.classList.toggle('hide', shouldShow);
 
-    // FIXED: Add will-change during scroll, remove after
+    // DYNAMIC JS: Calculate scroll progress (0 to 1) over 500px range
+    const scrollRange = 500;
+    const scrollProgress = Math.min(scrollY / scrollRange, 1);
+
+    // Update CSS variables based on scroll progress
+    // Blur: 60px → 100px
+    const blurAmount = 60 + (scrollProgress * 40);
+    // Background opacity: 0.07 → 0.14
+    const bgOpacity = 0.07 + (scrollProgress * 0.07);
+    // Saturate: 130% → 160%
+    const saturate = 130 + (scrollProgress * 30);
+    // Brightness: 1.05 → 1.12
+    const brightness = 1.05 + (scrollProgress * 0.07);
+
+    stickyClone.style.setProperty('--blur-amount', `${blurAmount}px`);
+    stickyClone.style.setProperty('--bg-opacity', bgOpacity);
+    stickyClone.style.setProperty('--saturate', `${saturate}%`);
+    stickyClone.style.setProperty('--brightness', brightness);
+
+    // Add will-change during scroll
     stickyClone.classList.add('scrolling');
     
-    // FIXED: Remove will-change after scroll stops (performance)
+    // Remove will-change after scroll stops
     clearTimeout(scrollTimeout);
     scrollTimeout = setTimeout(() => {
       stickyClone.classList.remove('scrolling');
@@ -70,7 +88,7 @@ if (heroFeatures && hero) {
     ticking = false;
   }
 
-  // FIXED: Store scroll listener reference for cleanup
+  // Store scroll listener reference for cleanup
   const scrollHandler = () => {
     if (!ticking) {
       window.requestAnimationFrame(updateStickyVisibility);
@@ -80,8 +98,7 @@ if (heroFeatures && hero) {
 
   window.addEventListener('scroll', scrollHandler, { passive: true });
 
-  // FIXED: Cleanup function for SPA navigation or page unload
-  // Expose cleanup globally if needed by SPA framework
+  // Cleanup function for SPA navigation or page unload
   window.cleanupStickyFeatures = () => {
     window.removeEventListener('scroll', scrollHandler);
     clearTimeout(scrollTimeout);
