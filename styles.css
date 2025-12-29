@@ -120,10 +120,10 @@ p {
 }
 
 .sticky-spacer.active {
-  height: 72px;
+  height: 56px;
 }
 
-/* OPTIMIZED BALANCE - Readability + Seamless Blend */
+/* COMPACT + INSANE BLUR - Google-like seamless blend */
 .hero-features-sticky {
   position: fixed;
   top: 0;
@@ -131,8 +131,8 @@ p {
   right: 0;
   z-index: 900;
 
-  /* Extended padding untuk massive blend area */
-  padding: 22px 20px 50px;
+  /* Compact padding - not too tall */
+  padding: 18px 20px 32px;
   text-align: center;
 
   /* Google-style typography */
@@ -142,30 +142,25 @@ p {
   opacity: 0;
   font-weight: 450;
 
-  /* BALANCED GRADIENT - Slightly higher opacity untuk cover gap, extended fade:
-     - Start dari 0.10 (90% transparan) - balance antara visibility & blend
-     - 12 stops untuk ultra-smooth transition
-     - Extended gradient area dengan padding 50px
+  /* TIGHT GRADIENT dengan opacity balance:
+     - 0.08 start (92% transparan) - sweet spot
+     - Tight gradient dalam compact area
+     - Seamless fade tanpa terlalu tall
   */
   background: linear-gradient(
     to bottom,
-    rgba(24, 30, 42, 0.10) 0%,
-    rgba(22, 28, 40, 0.085) 12%,
-    rgba(20, 26, 38, 0.070) 22%,
-    rgba(18, 24, 36, 0.057) 32%,
-    rgba(16, 22, 34, 0.046) 42%,
-    rgba(14, 20, 32, 0.036) 52%,
-    rgba(12, 18, 30, 0.027) 62%,
-    rgba(10, 16, 28, 0.019) 72%,
-    rgba(9, 15, 26, 0.013) 81%,
-    rgba(8, 14, 24, 0.008) 89%,
-    rgba(7, 13, 22, 0.004) 95%,
-    rgba(6, 12, 20, 0) 100%
+    rgba(24, 30, 42, 0.08) 0%,
+    rgba(20, 26, 38, 0.065) 20%,
+    rgba(16, 22, 34, 0.050) 40%,
+    rgba(12, 18, 30, 0.035) 60%,
+    rgba(9, 15, 26, 0.020) 77%,
+    rgba(7, 13, 22, 0.010) 90%,
+    rgba(5, 11, 20, 0) 100%
   );
   
-  /* INSANE BLUR (100px) untuk maximum seamless coverage */
-  backdrop-filter: blur(100px) saturate(150%) brightness(1.1) contrast(1.02);
-  -webkit-backdrop-filter: blur(100px) saturate(150%) brightness(1.1) contrast(1.02);
+  /* KEEP INSANE BLUR (100px) untuk maximum smoothness */
+  backdrop-filter: blur(100px) saturate(150%) brightness(1.1);
+  -webkit-backdrop-filter: blur(100px) saturate(150%) brightness(1.1);
   
   /* Zero separation */
   border: none;
@@ -174,8 +169,8 @@ p {
   pointer-events: none;
   transform: translateY(-100%);
   transition: 
-    opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1),
-    transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
   
   /* Ultra smooth rendering */
   will-change: transform, opacity;
@@ -193,11 +188,10 @@ p {
 .hero-features-sticky span {
   display: inline-block;
   margin: 0 6px;
-  /* Enhanced text shadow untuk better readability dengan slight opacity increase */
+  /* Enhanced text shadow untuk readability */
   text-shadow: 
-    0 0 16px rgba(0, 0, 0, 0.25),
-    0 1px 4px rgba(0, 0, 0, 0.15),
-    0 2px 8px rgba(0, 0, 0, 0.1);
+    0 0 14px rgba(0, 0, 0, 0.22),
+    0 1px 3px rgba(0, 0, 0, 0.12);
 }
 
 .hero-features-sticky .separator {
@@ -302,13 +296,13 @@ p {
   }
 
   .sticky-spacer.active {
-    height: 64px;
+    height: 52px;
   }
 
   .hero-features-sticky {
     font-size: 11px;
     letter-spacing: 0.01em;
-    padding: 20px 16px 44px;
+    padding: 16px 16px 28px;
   }
 
   .hero-features-sticky span {
