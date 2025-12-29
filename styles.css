@@ -131,8 +131,8 @@ p {
   right: 0;
   z-index: 900;
 
-  /* Compact padding */
-  padding: 18px 20px 0;
+  /* Compact padding with bottom space for backdrop fade */
+  padding: 18px 20px 14px;
   text-align: center;
 
   /* Google-style typography */
@@ -167,21 +167,20 @@ p {
   top: 0;
   left: 0;
   right: 0;
-  /* Extended height untuk massive blend area */
-  height: 120px;
+  /* Controlled height - not too tall to avoid excessive backdrop */
+  height: 80px;
   z-index: -1;
 
   /* SMOOTH GRADIENT - ultra-low opacity, seamless fade */
   background: linear-gradient(
     to bottom,
     rgba(24, 30, 42, 0.08) 0%,
-    rgba(20, 26, 38, 0.065) 18%,
-    rgba(16, 22, 34, 0.050) 32%,
-    rgba(12, 18, 30, 0.035) 46%,
-    rgba(9, 15, 26, 0.022) 60%,
-    rgba(7, 13, 22, 0.012) 74%,
-    rgba(5, 11, 20, 0.006) 87%,
-    rgba(3, 9, 18, 0) 100%
+    rgba(20, 26, 38, 0.065) 20%,
+    rgba(16, 22, 34, 0.050) 38%,
+    rgba(12, 18, 30, 0.035) 54%,
+    rgba(9, 15, 26, 0.020) 68%,
+    rgba(7, 13, 22, 0.010) 82%,
+    rgba(4, 10, 18, 0) 100%
   );
   
   /* INSANE BLUR (100px) on backdrop layer only */
@@ -192,15 +191,15 @@ p {
   -webkit-mask-image: linear-gradient(
     to bottom,
     rgba(0, 0, 0, 1) 0%,
-    rgba(0, 0, 0, 0.95) 50%,
-    rgba(0, 0, 0, 0.7) 80%,
+    rgba(0, 0, 0, 0.9) 45%,
+    rgba(0, 0, 0, 0.6) 75%,
     rgba(0, 0, 0, 0) 100%
   );
   mask-image: linear-gradient(
     to bottom,
     rgba(0, 0, 0, 1) 0%,
-    rgba(0, 0, 0, 0.95) 50%,
-    rgba(0, 0, 0, 0.7) 80%,
+    rgba(0, 0, 0, 0.9) 45%,
+    rgba(0, 0, 0, 0.6) 75%,
     rgba(0, 0, 0, 0) 100%
   );
 }
@@ -330,11 +329,11 @@ p {
   .hero-features-sticky {
     font-size: 11px;
     letter-spacing: 0.01em;
-    padding: 16px 16px 0;
+    padding: 16px 16px 12px;
   }
 
   .hero-features-sticky::before {
-    height: 100px;
+    height: 70px;
   }
 
   .hero-features-sticky span {
