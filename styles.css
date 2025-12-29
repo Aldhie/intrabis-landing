@@ -123,7 +123,7 @@ p {
   height: 56px;
 }
 
-/* COMPACT + INSANE BLUR - Google-like seamless blend */
+/* GOOGLE-STYLE 2-LAYER - Content layer (clean, no backdrop filter) */
 .hero-features-sticky {
   position: fixed;
   top: 0;
@@ -131,8 +131,8 @@ p {
   right: 0;
   z-index: 900;
 
-  /* Compact padding - not too tall */
-  padding: 18px 20px 32px;
+  /* Compact padding */
+  padding: 18px 20px 0;
   text-align: center;
 
   /* Google-style typography */
@@ -142,27 +142,8 @@ p {
   opacity: 0;
   font-weight: 450;
 
-  /* TIGHT GRADIENT dengan opacity balance:
-     - 0.08 start (92% transparan) - sweet spot
-     - Tight gradient dalam compact area
-     - Seamless fade tanpa terlalu tall
-  */
-  background: linear-gradient(
-    to bottom,
-    rgba(24, 30, 42, 0.08) 0%,
-    rgba(20, 26, 38, 0.065) 20%,
-    rgba(16, 22, 34, 0.050) 40%,
-    rgba(12, 18, 30, 0.035) 60%,
-    rgba(9, 15, 26, 0.020) 77%,
-    rgba(7, 13, 22, 0.010) 90%,
-    rgba(5, 11, 20, 0) 100%
-  );
-  
-  /* KEEP INSANE BLUR (100px) untuk maximum smoothness */
-  backdrop-filter: blur(100px) saturate(150%) brightness(1.1);
-  -webkit-backdrop-filter: blur(100px) saturate(150%) brightness(1.1);
-  
-  /* Zero separation */
+  /* NO background or blur here - clean content layer */
+  background: none;
   border: none;
   box-shadow: none;
 
@@ -172,11 +153,56 @@ p {
     opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1),
     transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
   
-  /* Ultra smooth rendering */
+  /* Smooth rendering */
   will-change: transform, opacity;
   backface-visibility: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* GOOGLE-STYLE BACKDROP LAYER - ::before pseudo-element with blur + gradient */
+.hero-features-sticky::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  /* Extended height untuk massive blend area */
+  height: 120px;
+  z-index: -1;
+
+  /* SMOOTH GRADIENT - ultra-low opacity, seamless fade */
+  background: linear-gradient(
+    to bottom,
+    rgba(24, 30, 42, 0.08) 0%,
+    rgba(20, 26, 38, 0.065) 18%,
+    rgba(16, 22, 34, 0.050) 32%,
+    rgba(12, 18, 30, 0.035) 46%,
+    rgba(9, 15, 26, 0.022) 60%,
+    rgba(7, 13, 22, 0.012) 74%,
+    rgba(5, 11, 20, 0.006) 87%,
+    rgba(3, 9, 18, 0) 100%
+  );
+  
+  /* INSANE BLUR (100px) on backdrop layer only */
+  backdrop-filter: blur(100px) saturate(150%) brightness(1.1);
+  -webkit-backdrop-filter: blur(100px) saturate(150%) brightness(1.1);
+  
+  /* Optional: mask for even smoother fade */
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(0, 0, 0, 0.95) 50%,
+    rgba(0, 0, 0, 0.7) 80%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(0, 0, 0, 0.95) 50%,
+    rgba(0, 0, 0, 0.7) 80%,
+    rgba(0, 0, 0, 0) 100%
+  );
 }
 
 .hero-features-sticky.visible {
@@ -188,6 +214,8 @@ p {
 .hero-features-sticky span {
   display: inline-block;
   margin: 0 6px;
+  position: relative;
+  z-index: 1;
   /* Enhanced text shadow untuk readability */
   text-shadow: 
     0 0 14px rgba(0, 0, 0, 0.22),
@@ -302,7 +330,11 @@ p {
   .hero-features-sticky {
     font-size: 11px;
     letter-spacing: 0.01em;
-    padding: 16px 16px 28px;
+    padding: 16px 16px 0;
+  }
+
+  .hero-features-sticky::before {
+    height: 100px;
   }
 
   .hero-features-sticky span {
