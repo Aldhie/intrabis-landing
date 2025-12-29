@@ -113,17 +113,17 @@ p {
   margin: 0 8px;
 }
 
-/* Spacer untuk mendorong konten turun saat sticky muncul (biar tidak "menumpuk") */
+/* Spacer untuk mendorong konten turun saat sticky muncul */
 .sticky-spacer {
   height: 0;
   transition: height 220ms ease;
 }
 
 .sticky-spacer.active {
-  height: 52px;
+  height: 56px;
 }
 
-/* Sticky clone (dibuat via JavaScript) - tetap transparan */
+/* Sticky clone dengan frosted glass / backdrop blur effect */
 .hero-features-sticky {
   position: fixed;
   top: 0;
@@ -131,7 +131,7 @@ p {
   right: 0;
   z-index: 1000;
 
-  padding: 14px 20px;
+  padding: 16px 20px;
   text-align: center;
 
   font-size: 11px;
@@ -140,9 +140,13 @@ p {
   opacity: 0;
   font-weight: 400;
 
-  /* Transparan, no background/border */
-  background: transparent;
-  border: none;
+  /* Frosted glass effect seperti Google navbar */
+  background: rgba(15, 17, 19, 0.8);
+  backdrop-filter: blur(12px) saturate(180%);
+  -webkit-backdrop-filter: blur(12px) saturate(180%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
 
   pointer-events: none;
   transform: translateY(-100%);
@@ -150,8 +154,9 @@ p {
 }
 
 .hero-features-sticky.visible {
-  opacity: 0.8;
+  opacity: 1;
   transform: translateY(0);
+  pointer-events: auto;
 }
 
 .hero-features-sticky span {
@@ -261,12 +266,12 @@ p {
   }
 
   .sticky-spacer.active {
-    height: 46px;
+    height: 50px;
   }
 
   .hero-features-sticky {
     font-size: 9px;
-    padding: 12px 16px;
+    padding: 14px 16px;
   }
 
   .hero-features-sticky .separator {
