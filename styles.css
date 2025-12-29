@@ -84,6 +84,31 @@ p {
   margin: 20px 0;
 }
 
+/* Features text overlay di bagian bawah hero */
+.hero-features {
+  position: absolute;
+  bottom: 40px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  z-index: 3;
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  color: #e6e6e6;
+  opacity: 0.8;
+  font-weight: 400;
+}
+
+.hero-features span {
+  display: inline-block;
+  margin: 0 4px;
+}
+
+.hero-features .separator {
+  opacity: 0.4;
+  margin: 0 8px;
+}
+
 .section {
   padding: 120px 40px;
 }
@@ -168,5 +193,15 @@ p {
   
   .hero::after {
     height: 150px;
+  }
+  
+  .hero-features {
+    font-size: 9px;
+    bottom: 30px;
+    padding: 0 20px;
+  }
+  
+  .hero-features .separator {
+    margin: 0 4px;
   }
 }
