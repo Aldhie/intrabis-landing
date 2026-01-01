@@ -57,6 +57,9 @@ if (heroFeatures && hero) {
     // Hide original hero-features saat sticky muncul
     heroFeatures.classList.toggle('hide', shouldShow);
 
+    // Toggle body class untuk trigger logo badge style transition
+    document.body.classList.toggle('nav-visible', shouldShow);
+
     // DYNAMIC JS: Calculate scroll progress (0 to 1) over 500px range
     const scrollRange = 500;
     const scrollProgress = Math.min(scrollY / scrollRange, 1);

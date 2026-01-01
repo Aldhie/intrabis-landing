@@ -24,30 +24,27 @@ p {
 }
 
 /* ================= BRAND LOGO BADGE ================= */
+/* Default (di hero): clean, no box, pure icon */
 .brand-badge {
   position: fixed;
-  top: 16px;
+  top: 14px;
   left: 16px;
   z-index: 3000;
-  
-  width: 44px;
-  height: 44px;
+
+  width: 32px;
+  height: 32px;
   display: grid;
   place-items: center;
-  
-  background: rgba(255,255,255,0.08);
-  border: 1px solid rgba(255,255,255,0.14);
-  border-radius: 12px;
-  
-  backdrop-filter: blur(12px) saturate(140%);
-  -webkit-backdrop-filter: blur(12px) saturate(140%);
-  
-  transition: all 0.2s ease;
-}
 
-.brand-badge:hover {
-  background: rgba(255,255,255,0.12);
-  transform: scale(1.05);
+  background: transparent;
+  border: none;
+  border-radius: 10px;
+
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+
+  opacity: 0.92;
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .brand-badge img {
@@ -55,6 +52,30 @@ p {
   height: 28px;
   object-fit: contain;
   display: block;
+  filter: drop-shadow(0 10px 26px rgba(0,0,0,0.45));
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Saat navbar sticky muncul: transform jadi glass badge */
+body.nav-visible .brand-badge {
+  top: 10px;
+  left: 16px;
+  width: 36px;
+  height: 36px;
+
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.10);
+
+  backdrop-filter: blur(18px) saturate(150%);
+  -webkit-backdrop-filter: blur(18px) saturate(150%);
+  
+  opacity: 1;
+}
+
+body.nav-visible .brand-badge img {
+  width: 22px;
+  height: 22px;
+  filter: none;
 }
 
 /* ================= HERO SECTION ================= */
@@ -376,13 +397,24 @@ p {
   .brand-badge { 
     top: 12px; 
     left: 12px; 
-    width: 40px; 
-    height: 40px; 
-    border-radius: 10px; 
+    width: 30px; 
+    height: 30px; 
   }
   
   .brand-badge img { 
     width: 26px; 
     height: 26px; 
+  }
+
+  body.nav-visible .brand-badge {
+    top: 9px;
+    left: 12px;
+    width: 34px;
+    height: 34px;
+  }
+
+  body.nav-visible .brand-badge img {
+    width: 20px;
+    height: 20px;
   }
 }
