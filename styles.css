@@ -23,8 +23,35 @@ p {
   opacity: 0.85;
 }
 
+/* ================= HERO TOP GRADIENT ================= */
+/* Always visible thin gradient scrim at top, Flow-style */
+.hero-top-gradient {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 72px;
+  z-index: 999;
+
+  background: linear-gradient(
+    to bottom,
+    rgba(8, 10, 14, 0.88) 0%,
+    rgba(10, 12, 16, 0.64) 35%,
+    rgba(12, 14, 18, 0.24) 70%,
+    rgba(12, 14, 18, 0) 100%
+  );
+
+  pointer-events: none;
+  opacity: 1;
+  transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Hide gradient when navbar is fully visible */
+body.nav-visible .hero-top-gradient {
+  opacity: 0;
+}
+
 /* ================= BRAND LOGO BADGE ================= */
-/* Compact & crisp logo */
 .brand-badge {
   position: fixed;
   top: 13px;
@@ -49,11 +76,10 @@ p {
   height: auto;
   object-fit: contain;
   display: block;
-  /* Crisp shadow for clarity */
   filter: drop-shadow(0 1px 3px rgba(0,0,0,0.22)) drop-shadow(0 1px 2px rgba(0,0,0,0.14));
 }
 
-/* HYBRID: stronger logo backing to prevent overlap */
+/* Logo backing: only show when navbar is visible */
 .brand-badge::before {
   content: '';
   position: absolute;
@@ -97,7 +123,6 @@ body.nav-visible .brand-badge::before {
   object-fit: cover;
 }
 
-/* Keep overlay disabled as per current branch state */
 /*.hero-overlay {
   position: absolute;
   inset: 0;
@@ -110,7 +135,6 @@ body.nav-visible .brand-badge::before {
   );
 }*/
 
-/* Gradient tambahan di bagian bawah untuk transisi lebih smooth */
 .hero::after {
   content: '';
   position: absolute;
@@ -150,7 +174,6 @@ body.nav-visible .brand-badge::before {
   margin: 20px 0;
 }
 
-/* Features text overlay di bagian bawah hero */
 .hero-features {
   position: absolute;
   bottom: 40px;
@@ -190,7 +213,7 @@ body.nav-visible .brand-badge::before {
   height: 54px;
 }
 
-/* HYBRID: keep blur, but slightly more opaque gradient */
+/* Sticky navbar: show after hero */
 .hero-features-sticky {
   position: fixed;
   top: 0;
@@ -398,5 +421,9 @@ body.nav-visible .brand-badge::before {
   .brand-badge img {
     width: 70px;
     height: auto;
+  }
+
+  .hero-top-gradient {
+    height: 60px;
   }
 }
