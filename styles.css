@@ -157,15 +157,14 @@ body.nav-visible .hero-top-gradient {
   margin: 0 8px;
 }
 
-/* Spacer to prevent content from sliding under navbar */
+/* Spacer to prevent content from sliding under navbar (in HTML now, not JS-injected) */
 .sticky-spacer {
   height: 0;
   transition: height 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Increased: match actual navbar visual height + safe margin */
 .sticky-spacer.active {
-  height: 800px;
+  height: 80px;
 }
 
 /* Sticky navbar: Flow-style clean gradient */
