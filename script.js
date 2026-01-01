@@ -17,9 +17,8 @@ if (video) {
 // Sticky features: clone element dan tampilkan saat scroll melewati hero
 const heroFeatures = document.querySelector('.hero-features');
 const hero = document.querySelector('.hero');
-const spacer = document.querySelector('.sticky-spacer');
 
-if (heroFeatures && hero && spacer) {
+if (heroFeatures && hero) {
   const stickyClone = document.createElement('div');
   stickyClone.className = 'hero-features-sticky';
   stickyClone.innerHTML = heroFeatures.innerHTML;
@@ -32,7 +31,6 @@ if (heroFeatures && hero && spacer) {
     const shouldShow = heroBottom <= 0;
 
     stickyClone.classList.toggle('visible', shouldShow);
-    spacer.classList.toggle('active', shouldShow);
     heroFeatures.classList.toggle('hide', shouldShow);
     document.body.classList.toggle('nav-visible', shouldShow);
 

@@ -157,16 +157,6 @@ body.nav-visible .hero-top-gradient {
   margin: 0 8px;
 }
 
-/* TEST: 500px to verify spacer logic works */
-.sticky-spacer {
-  height: 0;
-  transition: height 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.sticky-spacer.active {
-  height: 500px;
-}
-
 /* Sticky navbar: Flow-style clean gradient */
 .hero-features-sticky {
   position: fixed;
@@ -227,6 +217,12 @@ body.nav-visible .hero-top-gradient {
 
 .section {
   padding: 120px 40px;
+  transition: padding-top 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* TEST: 500px offset when navbar visible */
+body.nav-visible .section:first-of-type {
+  padding-top: 500px;
 }
 
 .container {
@@ -321,8 +317,8 @@ body.nav-visible .hero-top-gradient {
     margin: 0 4px;
   }
 
-  .sticky-spacer.active {
-    height: 500px;
+  body.nav-visible .section:first-of-type {
+    padding-top: 500px;
   }
 
   .hero-features-sticky {
