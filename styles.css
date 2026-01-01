@@ -213,7 +213,7 @@ body.nav-visible .brand-badge::before {
   height: 54px;
 }
 
-/* Sticky navbar: show after hero */
+/* Sticky navbar: SAME thin gradient style as hero */
 .hero-features-sticky {
   position: fixed;
   top: 0;
@@ -230,25 +230,21 @@ body.nav-visible .brand-badge::before {
   opacity: 0;
   font-weight: 400;
 
-  -webkit-text-stroke: 0.15px rgba(255,255,255,0.18);
-  text-rendering: geometricPrecision;
-
-  --blur-amount: 18px;
-  --bg-opacity: 0.18;
-  --saturate: 120%;
-  --brightness: 1.10;
-
+  /* SAME gradient as .hero-top-gradient */
   background: linear-gradient(
     to bottom,
-    rgba(12, 14, 18, var(--bg-opacity)) 0%,
-    rgba(12, 16, 22, calc(var(--bg-opacity) * 0.92)) 30%,
-    rgba(12, 16, 24, calc(var(--bg-opacity) * 0.80)) 60%,
-    rgba(12, 16, 24, calc(var(--bg-opacity) * 0.62)) 85%,
-    rgba(10, 14, 22, 0) 100%
+    rgba(8, 10, 14, 0.88) 0%,
+    rgba(10, 12, 16, 0.64) 35%,
+    rgba(12, 14, 18, 0.24) 70%,
+    rgba(12, 14, 18, 0) 100%
   );
 
   border: none;
   box-shadow: none;
+
+  /* NO BLUR - pure gradient like hero */
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
 
   pointer-events: auto;
   transform: translateY(-100%);
@@ -259,26 +255,6 @@ body.nav-visible .brand-badge::before {
   backface-visibility: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-@supports (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px)) {
-  .hero-features-sticky {
-    backdrop-filter: blur(var(--blur-amount)) saturate(var(--saturate)) brightness(var(--brightness));
-    -webkit-backdrop-filter: blur(var(--blur-amount)) saturate(var(--saturate)) brightness(var(--brightness));
-  }
-}
-
-@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
-  .hero-features-sticky {
-    background: linear-gradient(
-      to bottom,
-      rgba(12, 14, 18, 0.94) 0%,
-      rgba(12, 16, 22, 0.88) 30%,
-      rgba(12, 16, 24, 0.76) 60%,
-      rgba(12, 16, 24, 0.56) 85%,
-      rgba(10, 14, 22, 0) 100%
-    );
-  }
 }
 
 .hero-features-sticky.visible {
