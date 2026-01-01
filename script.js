@@ -57,17 +57,20 @@ if (heroFeatures && hero) {
     // Hide original hero-features saat sticky muncul
     heroFeatures.classList.toggle('hide', shouldShow);
 
+    // Toggle body class to enable logo backing when navbar is visible
+    document.body.classList.toggle('nav-visible', shouldShow);
+
     // DYNAMIC JS: Calculate scroll progress (0 to 1) over 800px range for crisp effect
     const scrollRange = 800;
     const scrollProgress = Math.min(scrollY / scrollRange, 1);
 
     // Update CSS variables based on scroll progress (reduced range for crisp text)
-    // Blur: 20px → 32px (reduced from 60px → 100px)
-    const blurAmount = 20 + (scrollProgress * 12);
-    // Background opacity: 0.12 → 0.18 (higher for better text contrast)
-    const bgOpacity = 0.12 + (scrollProgress * 0.06);
-    // Saturate: 120% → 135% (reduced from 130% → 160%)
-    const saturate = 120 + (scrollProgress * 15);
+    // Blur: 16px → 26px
+    const blurAmount = 16 + (scrollProgress * 10);
+    // Background opacity: 0.14 → 0.20
+    const bgOpacity = 0.14 + (scrollProgress * 0.06);
+    // Saturate: 115% → 130%
+    const saturate = 115 + (scrollProgress * 15);
     // Brightness: 1.08 → 1.14
     const brightness = 1.08 + (scrollProgress * 0.06);
 
