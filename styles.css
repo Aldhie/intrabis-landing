@@ -97,7 +97,7 @@ body.nav-visible .brand-badge::before {
   object-fit: cover;
 }
 
-/*.hero-overlay {
+.hero-overlay {
   position: absolute;
   inset: 0;
   background: linear-gradient(
@@ -107,7 +107,7 @@ body.nav-visible .brand-badge::before {
     rgba(15, 17, 19, 0.85) 85%,
     #0f1113 100%
   );
-}*/
+}
 
 /* Gradient tambahan di bagian bawah untuk transisi lebih smooth */
 .hero::after {
