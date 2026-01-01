@@ -157,7 +157,7 @@ body.nav-visible .hero-top-gradient {
   margin: 0 8px;
 }
 
-/* Sticky navbar: Flow-style AGGRESSIVE fade gradient */
+/* Sticky navbar: MAX fade (stronger top + faster drop) */
 .hero-features-sticky {
   position: fixed;
   top: 0;
@@ -165,9 +165,8 @@ body.nav-visible .hero-top-gradient {
   right: 0;
   z-index: 1000;
 
-  /* Taller container for longer gradient fade */
   height: 140px;
-  
+
   display: flex;
   align-items: flex-start;
   justify-content: center;
@@ -179,16 +178,18 @@ body.nav-visible .hero-top-gradient {
   opacity: 0;
   font-weight: 400;
 
-  /* AGGRESSIVE fade like Flow: content below fades to ~10-20% opacity before reaching navbar text */
+  /* Target: content behind navbar becomes nearly invisible earlier */
   background: linear-gradient(
     to bottom,
-    rgba(15, 17, 19, 0.98) 0%,
-    rgba(15, 17, 19, 0.95) 15%,
-    rgba(14, 16, 20, 0.88) 30%,
-    rgba(13, 15, 19, 0.72) 45%,
-    rgba(12, 14, 18, 0.48) 60%,
-    rgba(11, 13, 17, 0.28) 75%,
-    rgba(10, 12, 16, 0.08) 90%,
+    rgba(15, 17, 19, 1) 0%,
+    rgba(15, 17, 19, 0.99) 12%,
+    rgba(15, 17, 19, 0.95) 24%,
+    rgba(14, 16, 20, 0.82) 38%,
+    rgba(13, 15, 19, 0.56) 52%,
+    rgba(12, 14, 18, 0.34) 64%,
+    rgba(11, 13, 17, 0.16) 74%,
+    rgba(10, 12, 16, 0.06) 82%,
+    rgba(10, 12, 16, 0.02) 90%,
     rgba(10, 12, 16, 0) 100%
   );
 
@@ -330,13 +331,15 @@ body.nav-visible .hero-top-gradient {
 
     background: linear-gradient(
       to bottom,
-      rgba(15, 17, 19, 0.98) 0%,
-      rgba(15, 17, 19, 0.94) 15%,
-      rgba(14, 16, 20, 0.85) 30%,
-      rgba(13, 15, 19, 0.68) 45%,
-      rgba(12, 14, 18, 0.44) 60%,
-      rgba(11, 13, 17, 0.24) 75%,
-      rgba(10, 12, 16, 0.06) 90%,
+      rgba(15, 17, 19, 1) 0%,
+      rgba(15, 17, 19, 0.99) 12%,
+      rgba(15, 17, 19, 0.94) 24%,
+      rgba(14, 16, 20, 0.80) 38%,
+      rgba(13, 15, 19, 0.54) 52%,
+      rgba(12, 14, 18, 0.32) 64%,
+      rgba(11, 13, 17, 0.15) 74%,
+      rgba(10, 12, 16, 0.05) 82%,
+      rgba(10, 12, 16, 0.02) 90%,
       rgba(10, 12, 16, 0) 100%
     );
   }
