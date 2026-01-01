@@ -24,10 +24,10 @@ p {
 }
 
 /* ================= BRAND LOGO BADGE ================= */
-/* Pure floating logo - no box at all */
+/* Google-like behavior: logo stays in front; navbar appears behind it (no visual mode change). */
 .brand-badge {
   position: fixed;
-  top: 18px;
+  top: 16px;
   left: 20px;
   z-index: 3000;
 
@@ -42,29 +42,14 @@ p {
   -webkit-backdrop-filter: none;
 
   opacity: 0.95;
-  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .brand-badge img {
   width: 110px;
-  /*height: 42px; */
+  height: auto;
   object-fit: contain;
   display: block;
   filter: drop-shadow(0 2px 12px rgba(0,0,0,0.35)) drop-shadow(0 8px 24px rgba(0,0,0,0.25));
-  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* Saat navbar sticky muncul: tetap tanpa kotak, cuma adjust posisi & ukuran */
-body.nav-visible .brand-badge {
-  top: 14px;
-  left: 20px;
-  opacity: 1;
-}
-
-body.nav-visible .brand-badge img {
-  width: 40px;
-  height: 40px;
-  filter: drop-shadow(0 1px 6px rgba(0,0,0,0.25)) drop-shadow(0 4px 14px rgba(0,0,0,0.18));
 }
 
 /* ================= HERO SECTION ================= */
@@ -382,24 +367,14 @@ body.nav-visible .brand-badge img {
     margin: 0 6px;
   }
 
-  /* Mobile responsive untuk brand badge */
-  .brand-badge { 
-    top: 14px; 
-    left: 16px; 
-  }
-  
-  .brand-badge img { 
-    width: 38px; 
-    height: 38px; 
-  }
-
-  body.nav-visible .brand-badge {
-    top: 12px;
+  /* Mobile: keep it consistent (no mode change) */
+  .brand-badge {
+    top: 14px;
     left: 16px;
   }
 
-  body.nav-visible .brand-badge img {
-    width: 36px;
-    height: 36px;
+  .brand-badge img {
+    width: 96px;
+    height: auto;
   }
 }
