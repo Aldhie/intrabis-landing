@@ -24,10 +24,10 @@ p {
 }
 
 /* ================= BRAND LOGO BADGE ================= */
-/* Google-like behavior: logo stays consistent, navbar appears behind it */
+/* Google-like behavior: crisp, solid, aligned with navbar */
 .brand-badge {
   position: fixed;
-  top: 16px;
+  top: 12px;
   left: 20px;
   z-index: 3000;
 
@@ -41,7 +41,7 @@ p {
   backdrop-filter: none;
   -webkit-backdrop-filter: none;
 
-  opacity: 0.95;
+  opacity: 1;
 }
 
 .brand-badge img {
@@ -49,7 +49,8 @@ p {
   height: auto;
   object-fit: contain;
   display: block;
-  filter: drop-shadow(0 2px 12px rgba(0,0,0,0.35)) drop-shadow(0 8px 24px rgba(0,0,0,0.25));
+  /* Crisp shadow for clarity - minimal, not blurry */
+  filter: drop-shadow(0 1px 3px rgba(0,0,0,0.20)) drop-shadow(0 1px 2px rgba(0,0,0,0.12));
 }
 
 /* ================= HERO SECTION ================= */
@@ -367,9 +368,9 @@ p {
     margin: 0 6px;
   }
 
-  /* Mobile: slightly smaller logo but still consistent */
+  /* Mobile: maintain crisp look */
   .brand-badge {
-    top: 14px;
+    top: 11px;
     left: 16px;
   }
 
