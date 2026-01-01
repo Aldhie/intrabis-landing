@@ -24,7 +24,7 @@ p {
 }
 
 /* ================= BRAND LOGO BADGE ================= */
-/* Google-like behavior: logo stays in front; navbar appears behind it (no visual mode change). */
+/* Google-like behavior: logo stays consistent, navbar appears behind it */
 .brand-badge {
   position: fixed;
   top: 16px;
@@ -367,7 +367,7 @@ p {
     margin: 0 6px;
   }
 
-  /* Mobile: keep it consistent (no mode change) */
+  /* Mobile: slightly smaller logo but still consistent */
   .brand-badge {
     top: 14px;
     left: 16px;
