@@ -20,7 +20,6 @@ const heroFeatures = document.querySelector('.hero-features');
 const hero = document.querySelector('.hero');
 
 if (heroFeatures && hero) {
-  // Create elements with proper DOM order
   const stickyClone = document.createElement('div');
   stickyClone.className = 'hero-features-sticky';
   stickyClone.innerHTML = heroFeatures.innerHTML;
@@ -28,7 +27,6 @@ if (heroFeatures && hero) {
   const spacer = document.createElement('div');
   spacer.className = 'sticky-spacer';
 
-  // Insert AFTER hero section
   const heroParent = hero.parentElement;
   const nextSibling = hero.nextElementSibling;
   
@@ -38,60 +36,22 @@ if (heroFeatures && hero) {
     heroParent.appendChild(spacer);
   }
   
-  // Sticky clone appended to body for global z-index context
   document.body.appendChild(stickyClone);
 
   let ticking = false;
-  let scrollTimeout = null;
 
   function updateStickyVisibility() {
     const heroBottom = hero.getBoundingClientRect().bottom;
-    const scrollY = window.scrollY;
-
-    // Tampilkan sticky clone jika hero sudah lewat
     const shouldShow = heroBottom <= 0;
 
     stickyClone.classList.toggle('visible', shouldShow);
     spacer.classList.toggle('active', shouldShow);
-    
-    // Hide original hero-features saat sticky muncul
     heroFeatures.classList.toggle('hide', shouldShow);
-
-    // Toggle body class to enable logo backing when navbar is visible
     document.body.classList.toggle('nav-visible', shouldShow);
-
-    // DYNAMIC JS: Calculate scroll progress (0 to 1) over 800px range for crisp effect
-    const scrollRange = 800;
-    const scrollProgress = Math.min(scrollY / scrollRange, 1);
-
-    // Update CSS variables based on scroll progress (reduced range for crisp text)
-    // Blur: 16px → 26px
-    const blurAmount = 16 + (scrollProgress * 10);
-    // Background opacity: 0.14 → 0.20
-    const bgOpacity = 0.14 + (scrollProgress * 0.06);
-    // Saturate: 115% → 130%
-    const saturate = 115 + (scrollProgress * 15);
-    // Brightness: 1.08 → 1.14
-    const brightness = 1.08 + (scrollProgress * 0.06);
-
-    stickyClone.style.setProperty('--blur-amount', `${blurAmount}px`);
-    stickyClone.style.setProperty('--bg-opacity', bgOpacity);
-    stickyClone.style.setProperty('--saturate', `${saturate}%`);
-    stickyClone.style.setProperty('--brightness', brightness);
-
-    // Add will-change during scroll
-    stickyClone.classList.add('scrolling');
-    
-    // Remove will-change after scroll stops
-    clearTimeout(scrollTimeout);
-    scrollTimeout = setTimeout(() => {
-      stickyClone.classList.remove('scrolling');
-    }, 150);
 
     ticking = false;
   }
 
-  // Store scroll listener reference for cleanup
   const scrollHandler = () => {
     if (!ticking) {
       window.requestAnimationFrame(updateStickyVisibility);
@@ -101,10 +61,8 @@ if (heroFeatures && hero) {
 
   window.addEventListener('scroll', scrollHandler, { passive: true });
 
-  // Cleanup function for SPA navigation or page unload
   window.cleanupStickyFeatures = () => {
     window.removeEventListener('scroll', scrollHandler);
-    clearTimeout(scrollTimeout);
     if (stickyClone && stickyClone.parentElement) {
       stickyClone.remove();
     }
@@ -113,6 +71,5 @@ if (heroFeatures && hero) {
     }
   };
 
-  // Initial check
   updateStickyVisibility();
 }

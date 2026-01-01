@@ -24,7 +24,6 @@ p {
 }
 
 /* ================= HERO TOP GRADIENT ================= */
-/* Always visible thin gradient scrim at top, Flow-style */
 .hero-top-gradient {
   position: fixed;
   top: 0;
@@ -46,7 +45,6 @@ p {
   transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Hide gradient when navbar is fully visible */
 body.nav-visible .hero-top-gradient {
   opacity: 0;
 }
@@ -65,9 +63,6 @@ body.nav-visible .hero-top-gradient {
   background: transparent;
   border: none;
 
-  backdrop-filter: none;
-  -webkit-backdrop-filter: none;
-
   opacity: 1;
 }
 
@@ -76,38 +71,12 @@ body.nav-visible .hero-top-gradient {
   height: auto;
   object-fit: contain;
   display: block;
-  filter: drop-shadow(0 1px 3px rgba(0,0,0,0.22)) drop-shadow(0 1px 2px rgba(0,0,0,0.14));
+  /* Clean shadow like Flow */
+  filter: drop-shadow(0 1px 2px rgba(0,0,0,0.3));
 }
 
-/* Logo backing: only show when navbar is visible */
-.brand-badge::before {
-  content: '';
-  position: absolute;
-  inset: -12px -12px;
-  border-radius: 16px;
-  background: rgba(12, 16, 24, 0);
-  opacity: 0;
-  transition: opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1), background 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-  pointer-events: none;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-@supports (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px)) {
-  .brand-badge::before {
-    backdrop-filter: blur(16px) saturate(125%);
-    -webkit-backdrop-filter: blur(16px) saturate(125%);
-  }
-}
-
-body.nav-visible .brand-badge::before {
-  opacity: 1;
-  background: linear-gradient(
-    135deg,
-    rgba(10, 12, 16, 0.78) 0%,
-    rgba(12, 16, 22, 0.62) 45%,
-    rgba(12, 16, 24, 0.42) 100%
-  );
-}
+/* NO BACKING - clean logo like Flow */
+/* Removed .brand-badge::before entirely */
 
 /* ================= HERO SECTION ================= */
 .hero {
@@ -122,18 +91,6 @@ body.nav-visible .brand-badge::before {
   height: 100%;
   object-fit: cover;
 }
-
-/*.hero-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    to bottom,
-    rgba(10, 12, 14, 0.55) 0%,
-    rgba(10, 12, 14, 0.65) 60%,
-    rgba(15, 17, 19, 0.85) 85%,
-    #0f1113 100%
-  );
-}*/
 
 .hero::after {
   content: '';
@@ -213,7 +170,7 @@ body.nav-visible .brand-badge::before {
   height: 54px;
 }
 
-/* Sticky navbar: SAME thin gradient style as hero */
+/* Sticky navbar: Flow-style clean gradient */
 .hero-features-sticky {
   position: fixed;
   top: 0;
@@ -226,23 +183,22 @@ body.nav-visible .brand-badge::before {
 
   font-size: 13px;
   letter-spacing: 0.06em;
-  color: rgba(255,255,255,0.96);
+  color: rgba(255,255,255,0.98);
   opacity: 0;
   font-weight: 400;
 
-  /* SAME gradient as .hero-top-gradient */
+  /* Flow-matched gradient: slightly brighter at top */
   background: linear-gradient(
     to bottom,
-    rgba(8, 10, 14, 0.88) 0%,
-    rgba(10, 12, 16, 0.64) 35%,
-    rgba(12, 14, 18, 0.24) 70%,
-    rgba(12, 14, 18, 0) 100%
+    rgba(10, 12, 16, 0.92) 0%,
+    rgba(12, 14, 18, 0.72) 35%,
+    rgba(14, 16, 20, 0.32) 70%,
+    rgba(14, 16, 20, 0) 100%
   );
 
   border: none;
   box-shadow: none;
 
-  /* NO BLUR - pure gradient like hero */
   backdrop-filter: none;
   -webkit-backdrop-filter: none;
 
@@ -266,7 +222,6 @@ body.nav-visible .brand-badge::before {
 .hero-features-sticky span {
   display: inline-block;
   margin: 0 8px;
-  text-shadow: none;
 }
 
 .hero-features-sticky .separator {
