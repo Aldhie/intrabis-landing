@@ -23,6 +23,67 @@ p {
   opacity: 0.85;
 }
 
+/* ================= BRAND LOGO BADGE ================= */
+/* Compact & crisp logo */
+.brand-badge {
+  position: fixed;
+  top: 13px;
+  left: 20px;
+  z-index: 3000;
+
+  display: block;
+  width: auto;
+  height: auto;
+
+  background: transparent;
+  border: none;
+
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+
+  opacity: 1;
+}
+
+.brand-badge img {
+  width: 80px;
+  height: auto;
+  object-fit: contain;
+  display: block;
+  /* Crisp shadow for clarity */
+  filter: drop-shadow(0 1px 3px rgba(0,0,0,0.22)) drop-shadow(0 1px 2px rgba(0,0,0,0.14));
+}
+
+/* HYBRID: stronger logo backing to prevent overlap */
+.brand-badge::before {
+  content: '';
+  position: absolute;
+  inset: -12px -12px;
+  border-radius: 16px;
+  background: rgba(12, 16, 24, 0);
+  opacity: 0;
+  transition: opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1), background 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+@supports (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px)) {
+  .brand-badge::before {
+    backdrop-filter: blur(16px) saturate(125%);
+    -webkit-backdrop-filter: blur(16px) saturate(125%);
+  }
+}
+
+body.nav-visible .brand-badge::before {
+  opacity: 1;
+  background: linear-gradient(
+    135deg,
+    rgba(10, 12, 16, 0.78) 0%,
+    rgba(12, 16, 22, 0.62) 45%,
+    rgba(12, 16, 24, 0.42) 100%
+  );
+}
+
+/* ================= HERO SECTION ================= */
 .hero {
   position: relative;
   height: 100vh;
@@ -36,7 +97,8 @@ p {
   object-fit: cover;
 }
 
-.hero-overlay {
+/* Keep overlay disabled as per current branch state */
+/*.hero-overlay {
   position: absolute;
   inset: 0;
   background: linear-gradient(
@@ -46,7 +108,7 @@ p {
     rgba(15, 17, 19, 0.85) 85%,
     #0f1113 100%
   );
-}
+}*/
 
 /* Gradient tambahan di bagian bawah untuk transisi lebih smooth */
 .hero::after {
@@ -104,7 +166,6 @@ p {
   transition: opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Hide original saat sticky muncul */
 .hero-features.hide {
   opacity: 0;
   pointer-events: none;
@@ -120,17 +181,16 @@ p {
   margin: 0 8px;
 }
 
-/* Spacer untuk mendorong konten turun saat sticky muncul */
 .sticky-spacer {
   height: 0;
   transition: height 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .sticky-spacer.active {
-  height: 50px;
+  height: 54px;
 }
 
-/* OPTION 3B: DYNAMIC JS (Scroll-Progress with CSS Variables) */
+/* HYBRID: keep blur, but slightly more opaque gradient */
 .hero-features-sticky {
   position: fixed;
   top: 0;
@@ -138,30 +198,30 @@ p {
   right: 0;
   z-index: 1000;
 
-  padding: 16px 20px 20px;
+  padding: 18px 20px 18px;
   text-align: center;
 
   font-size: 13px;
-  letter-spacing: 0.03em;
-  color: #ffffff;
+  letter-spacing: 0.06em;
+  color: rgba(255,255,255,0.96);
   opacity: 0;
-  font-weight: 500;
+  font-weight: 400;
 
-  /* CSS Variables updated by JS - defaults */
-  --blur-amount: 60px;
-  --bg-opacity: 0.07;
-  --saturate: 130%;
-  --brightness: 1.05;
+  -webkit-text-stroke: 0.15px rgba(255,255,255,0.18);
+  text-rendering: geometricPrecision;
 
-  /* Dynamic gradient using CSS variable */
+  --blur-amount: 18px;
+  --bg-opacity: 0.18;
+  --saturate: 120%;
+  --brightness: 1.10;
+
   background: linear-gradient(
     to bottom,
-    rgba(20, 26, 36, var(--bg-opacity)) 0%,
-    rgba(18, 24, 34, calc(var(--bg-opacity) * 0.85)) 20%,
-    rgba(16, 22, 32, calc(var(--bg-opacity) * 0.70)) 40%,
-    rgba(14, 20, 30, calc(var(--bg-opacity) * 0.55)) 60%,
-    rgba(12, 18, 28, calc(var(--bg-opacity) * 0.35)) 75%,
-    rgba(10, 16, 26, 0) 100%
+    rgba(12, 14, 18, var(--bg-opacity)) 0%,
+    rgba(12, 16, 22, calc(var(--bg-opacity) * 0.92)) 30%,
+    rgba(12, 16, 24, calc(var(--bg-opacity) * 0.80)) 60%,
+    rgba(12, 16, 24, calc(var(--bg-opacity) * 0.62)) 85%,
+    rgba(10, 14, 22, 0) 100%
   );
 
   border: none;
@@ -178,7 +238,6 @@ p {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Dynamic blur using CSS variables */
 @supports (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px)) {
   .hero-features-sticky {
     backdrop-filter: blur(var(--blur-amount)) saturate(var(--saturate)) brightness(var(--brightness));
@@ -186,22 +245,17 @@ p {
   }
 }
 
-/* Fallback untuk browser tanpa backdrop-filter */
 @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
   .hero-features-sticky {
     background: linear-gradient(
       to bottom,
-      rgba(20, 26, 36, 0.88) 0%,
-      rgba(18, 24, 34, 0.78) 25%,
-      rgba(16, 22, 32, 0.65) 55%,
-      rgba(14, 20, 30, 0.40) 80%,
-      rgba(12, 18, 28, 0) 100%
+      rgba(12, 14, 18, 0.94) 0%,
+      rgba(12, 16, 22, 0.88) 30%,
+      rgba(12, 16, 24, 0.76) 60%,
+      rgba(12, 16, 24, 0.56) 85%,
+      rgba(10, 14, 22, 0) 100%
     );
   }
-}
-
-.hero-features-sticky.scrolling {
-  will-change: transform, opacity;
 }
 
 .hero-features-sticky.visible {
@@ -212,14 +266,12 @@ p {
 
 .hero-features-sticky span {
   display: inline-block;
-  margin: 0 6px;
-  text-shadow:
-    0 0 12px rgba(0, 0, 0, 0.18),
-    0 1px 2px rgba(0, 0, 0, 0.10);
+  margin: 0 8px;
+  text-shadow: none;
 }
 
 .hero-features-sticky .separator {
-  opacity: 0.25;
+  opacity: 0.28;
   margin: 0 10px;
 }
 
@@ -320,20 +372,31 @@ p {
   }
 
   .sticky-spacer.active {
-    height: 44px;
+    height: 48px;
   }
 
   .hero-features-sticky {
-    font-size: 10.5px;
-    letter-spacing: 0.02em;
-    padding: 14px 16px 18px;
+    font-size: 10.25px;
+    letter-spacing: 0.05em;
+    padding: 16px 16px 16px;
+    font-weight: 400;
   }
 
   .hero-features-sticky span {
-    margin: 0 4px;
+    margin: 0 5px;
   }
 
   .hero-features-sticky .separator {
     margin: 0 6px;
+  }
+
+  .brand-badge {
+    top: 12px;
+    left: 16px;
+  }
+
+  .brand-badge img {
+    width: 70px;
+    height: auto;
   }
 }
