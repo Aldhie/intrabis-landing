@@ -19,10 +19,19 @@
 <!-- ================= HERO SECTION ================= -->
 <section class="hero">
 
-  <!-- Single video dengan seamless loop via JavaScript -->
+  <!-- Dual video layers for seamless crossfade loop -->
   <video
-    class="hero-video"
+    class="hero-video hero-video-1"
     autoplay
+    muted
+    playsinline
+    preload="auto"
+  >
+    <source src="no_watermark_movie.mp4" type="video/mp4">
+  </video>
+
+  <video
+    class="hero-video hero-video-2"
     muted
     playsinline
     preload="auto"

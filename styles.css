@@ -81,11 +81,23 @@ body.nav-visible .hero-top-gradient {
   overflow: hidden;
 }
 
+/* Dual video layers for seamless crossfade */
 .hero-video {
   position: absolute;
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transition: opacity 1s ease-in-out;
+}
+
+.hero-video-1 {
+  z-index: 0;
+  opacity: 1;
+}
+
+.hero-video-2 {
+  z-index: 1;
+  opacity: 0;
 }
 
 .hero::after {
