@@ -157,15 +157,15 @@ body.nav-visible .hero-top-gradient {
   margin: 0 8px;
 }
 
-/* Spacer to prevent content going under fixed navbar */
+/* Spacer to prevent content from sliding under navbar */
 .sticky-spacer {
   height: 0;
   transition: height 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Desktop navbar approx: 18px + 13px*1.6 + 18px = ~56.8px */
+/* Increased: match actual navbar visual height + safe margin */
 .sticky-spacer.active {
-  height: 64px;
+  height: 80px;
 }
 
 /* Sticky navbar: Flow-style clean gradient */
@@ -322,9 +322,8 @@ body.nav-visible .hero-top-gradient {
     margin: 0 4px;
   }
 
-  /* Mobile navbar approx: 16 + 10.25*1.6 + 16 = ~48.4px */
   .sticky-spacer.active {
-    height: 56px;
+    height: 68px;
   }
 
   .hero-features-sticky {
