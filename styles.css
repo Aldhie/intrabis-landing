@@ -165,7 +165,7 @@ body.nav-visible .hero-top-gradient {
 
 /* Increased: match actual navbar visual height + safe margin */
 .sticky-spacer.active {
-  height: 80px;
+  height: 800px;
 }
 
 /* Sticky navbar: Flow-style clean gradient */
