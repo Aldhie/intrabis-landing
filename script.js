@@ -57,19 +57,19 @@ if (heroFeatures && hero) {
     // Hide original hero-features saat sticky muncul
     heroFeatures.classList.toggle('hide', shouldShow);
 
-    // DYNAMIC JS: Calculate scroll progress (0 to 1) over 500px range
-    const scrollRange = 500;
+    // DYNAMIC JS: Calculate scroll progress (0 to 1) over 800px range for crisp effect
+    const scrollRange = 800;
     const scrollProgress = Math.min(scrollY / scrollRange, 1);
 
-    // Update CSS variables based on scroll progress
-    // Blur: 60px → 100px
-    const blurAmount = 60 + (scrollProgress * 40);
-    // Background opacity: 0.07 → 0.14
-    const bgOpacity = 0.07 + (scrollProgress * 0.07);
-    // Saturate: 130% → 160%
-    const saturate = 130 + (scrollProgress * 30);
-    // Brightness: 1.05 → 1.12
-    const brightness = 1.05 + (scrollProgress * 0.07);
+    // Update CSS variables based on scroll progress (reduced range for crisp text)
+    // Blur: 20px → 32px (reduced from 60px → 100px)
+    const blurAmount = 20 + (scrollProgress * 12);
+    // Background opacity: 0.12 → 0.18 (higher for better text contrast)
+    const bgOpacity = 0.12 + (scrollProgress * 0.06);
+    // Saturate: 120% → 135% (reduced from 130% → 160%)
+    const saturate = 120 + (scrollProgress * 15);
+    // Brightness: 1.08 → 1.14
+    const brightness = 1.08 + (scrollProgress * 0.06);
 
     stickyClone.style.setProperty('--blur-amount', `${blurAmount}px`);
     stickyClone.style.setProperty('--bg-opacity', bgOpacity);
