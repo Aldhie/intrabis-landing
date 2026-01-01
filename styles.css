@@ -53,33 +53,33 @@ p {
   filter: drop-shadow(0 1px 3px rgba(0,0,0,0.22)) drop-shadow(0 1px 2px rgba(0,0,0,0.14));
 }
 
-/* When sticky navbar is visible, give logo its own subtle glass backing to prevent overlap with content */
+/* HYBRID: stronger logo backing to prevent overlap */
 .brand-badge::before {
   content: '';
   position: absolute;
-  inset: -10px -10px;
-  border-radius: 14px;
+  inset: -12px -12px;
+  border-radius: 16px;
   background: rgba(12, 16, 24, 0);
   opacity: 0;
   transition: opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1), background 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   pointer-events: none;
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 @supports (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px)) {
   .brand-badge::before {
-    backdrop-filter: blur(14px) saturate(120%);
-    -webkit-backdrop-filter: blur(14px) saturate(120%);
+    backdrop-filter: blur(16px) saturate(125%);
+    -webkit-backdrop-filter: blur(16px) saturate(125%);
   }
 }
 
-/* Triggered by JS when sticky navbar is visible */
 body.nav-visible .brand-badge::before {
   opacity: 1;
   background: linear-gradient(
     135deg,
-    rgba(16, 20, 28, 0.50) 0%,
-    rgba(14, 18, 26, 0.32) 45%,
-    rgba(12, 16, 24, 0.18) 100%
+    rgba(10, 12, 16, 0.78) 0%,
+    rgba(12, 16, 22, 0.62) 45%,
+    rgba(12, 16, 24, 0.42) 100%
   );
 }
 
@@ -97,6 +97,7 @@ body.nav-visible .brand-badge::before {
   object-fit: cover;
 }
 
+/* Keep overlay disabled as per current branch state */
 /*.hero-overlay {
   position: absolute;
   inset: 0;
@@ -165,7 +166,6 @@ body.nav-visible .brand-badge::before {
   transition: opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Hide original saat sticky muncul */
 .hero-features.hide {
   opacity: 0;
   pointer-events: none;
@@ -181,7 +181,6 @@ body.nav-visible .brand-badge::before {
   margin: 0 8px;
 }
 
-/* Spacer untuk mendorong konten turun saat sticky muncul */
 .sticky-spacer {
   height: 0;
   transition: height 0.35s cubic-bezier(0.4, 0, 0.2, 1);
@@ -191,7 +190,7 @@ body.nav-visible .brand-badge::before {
   height: 54px;
 }
 
-/* Sticky navbar with crisp text */
+/* HYBRID: keep blur, but slightly more opaque gradient */
 .hero-features-sticky {
   position: fixed;
   top: 0;
@@ -208,23 +207,20 @@ body.nav-visible .brand-badge::before {
   opacity: 0;
   font-weight: 400;
 
-  /* Improve perceived thinness */
   -webkit-text-stroke: 0.15px rgba(255,255,255,0.18);
   text-rendering: geometricPrecision;
 
-  /* CSS Variables updated by JS - defaults for crisp look */
-  --blur-amount: 16px;
-  --bg-opacity: 0.14;
-  --saturate: 115%;
-  --brightness: 1.08;
+  --blur-amount: 18px;
+  --bg-opacity: 0.18;
+  --saturate: 120%;
+  --brightness: 1.10;
 
-  /* Solid gradient for crisp text rendering */
   background: linear-gradient(
     to bottom,
-    rgba(18, 22, 30, var(--bg-opacity)) 0%,
-    rgba(16, 20, 28, calc(var(--bg-opacity) * 0.92)) 30%,
-    rgba(14, 18, 26, calc(var(--bg-opacity) * 0.80)) 60%,
-    rgba(12, 16, 24, calc(var(--bg-opacity) * 0.55)) 85%,
+    rgba(12, 14, 18, var(--bg-opacity)) 0%,
+    rgba(12, 16, 22, calc(var(--bg-opacity) * 0.92)) 30%,
+    rgba(12, 16, 24, calc(var(--bg-opacity) * 0.80)) 60%,
+    rgba(12, 16, 24, calc(var(--bg-opacity) * 0.62)) 85%,
     rgba(10, 14, 22, 0) 100%
   );
 
@@ -242,7 +238,6 @@ body.nav-visible .brand-badge::before {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Reduced blur for crisp text */
 @supports (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px)) {
   .hero-features-sticky {
     backdrop-filter: blur(var(--blur-amount)) saturate(var(--saturate)) brightness(var(--brightness));
@@ -250,22 +245,17 @@ body.nav-visible .brand-badge::before {
   }
 }
 
-/* Fallback untuk browser tanpa backdrop-filter */
 @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
   .hero-features-sticky {
     background: linear-gradient(
       to bottom,
-      rgba(18, 22, 30, 0.92) 0%,
-      rgba(16, 20, 28, 0.85) 30%,
-      rgba(14, 18, 26, 0.72) 60%,
-      rgba(12, 16, 24, 0.48) 85%,
+      rgba(12, 14, 18, 0.94) 0%,
+      rgba(12, 16, 22, 0.88) 30%,
+      rgba(12, 16, 24, 0.76) 60%,
+      rgba(12, 16, 24, 0.56) 85%,
       rgba(10, 14, 22, 0) 100%
     );
   }
-}
-
-.hero-features-sticky.scrolling {
-  will-change: transform, opacity;
 }
 
 .hero-features-sticky.visible {
@@ -400,7 +390,6 @@ body.nav-visible .brand-badge::before {
     margin: 0 6px;
   }
 
-  /* Mobile: compact logo */
   .brand-badge {
     top: 12px;
     left: 16px;
