@@ -64,7 +64,6 @@ body.nav-visible .hero-top-gradient {
   border: none;
 
   opacity: 1;
-  transition: top 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .brand-badge img {
@@ -396,11 +395,6 @@ body.nav-visible .hero-top-gradient {
   /* Hide text content only (ready for icons later) */
   .hero-features-sticky span {
     display: none;
-  }
-
-  /* Logo moves down when navbar is visible to avoid collision */
-  body.nav-visible .brand-badge {
-    top: 72px;
   }
 
   .brand-badge {
