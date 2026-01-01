@@ -5,6 +5,10 @@ const video1 = document.querySelector('.hero-video-1');
 const video2 = document.querySelector('.hero-video-2');
 
 if (video1 && video2) {
+  // Set playback speed to 0.5x (slow motion)
+  video1.playbackRate = 0.5;
+  video2.playbackRate = 0.5;
+  
   let activeVideo = video1;
   let inactiveVideo = video2;
   
@@ -21,6 +25,7 @@ if (video1 && video2) {
       if (timeLeft <= 1.5 && timeLeft > 0) {
         // Start inactive video from beginning
         inactiveVideo.currentTime = 0;
+        inactiveVideo.playbackRate = 0.5; // Ensure same speed
         inactiveVideo.play().catch(() => {});
         
         // Crossfade: fade out active, fade in inactive
