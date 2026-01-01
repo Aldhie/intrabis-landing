@@ -64,6 +64,7 @@ body.nav-visible .hero-top-gradient {
   border: none;
 
   opacity: 1;
+  transition: top 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .brand-badge img {
@@ -353,9 +354,53 @@ body.nav-visible .hero-top-gradient {
     margin: 0 4px;
   }
 
-  /* MOBILE: Hide sticky navbar text (decorative only, saves space) */
+  /* MOBILE: Navbar container tetap ada (ready for icons), text hidden */
   .hero-features-sticky {
-    display: none !important;
+    display: flex !important;
+    height: 64px;
+    padding-top: 14px;
+    
+    background: transparent;
+    backdrop-filter: blur(6px) saturate(1.2);
+    -webkit-backdrop-filter: blur(6px) saturate(1.2);
+
+    mask-image: linear-gradient(
+      to bottom,
+      #000 0%,
+      #000 35%,
+      rgba(0, 0, 0, 0.7) 60%,
+      rgba(0, 0, 0, 0.2) 80%,
+      transparent 100%
+    );
+    -webkit-mask-image: linear-gradient(
+      to bottom,
+      #000 0%,
+      #000 35%,
+      rgba(0, 0, 0, 0.7) 60%,
+      rgba(0, 0, 0, 0.2) 80%,
+      transparent 100%
+    );
+  }
+
+  .hero-features-sticky::before {
+    background: linear-gradient(
+      to bottom,
+      rgba(15, 17, 19, 0.68) 0%,
+      rgba(15, 17, 19, 0.52) 35%,
+      rgba(15, 17, 19, 0.30) 65%,
+      rgba(15, 17, 19, 0.14) 85%,
+      rgba(15, 17, 19, 0.00) 100%
+    );
+  }
+
+  /* Hide text content only (ready for icons later) */
+  .hero-features-sticky span {
+    display: none;
+  }
+
+  /* Logo moves down when navbar is visible to avoid collision */
+  body.nav-visible .brand-badge {
+    top: 72px;
   }
 
   .brand-badge {
