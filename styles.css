@@ -373,15 +373,16 @@ body.nav-visible .hero-top-gradient {
     inset 0 1px 0 rgba(255, 255, 255, 0.05);
   
   transition: all 0.3s ease;
+  cursor: pointer;
 }
 
 .card-glass:hover {
   background: rgba(255, 255, 255, 0.05);
-  border-color: rgba(100, 150, 255, 0.2);
+  border-color: rgba(255, 160, 100, 0.3);
   transform: translateX(-4px);
   box-shadow: 
     0 12px 48px rgba(0, 0, 0, 0.4),
-    0 0 20px rgba(100, 150, 255, 0.1),
+    0 0 24px rgba(255, 160, 100, 0.15),
     inset 0 1px 0 rgba(255, 255, 255, 0.08);
 }
 
@@ -394,6 +395,11 @@ body.nav-visible .hero-top-gradient {
   align-items: center;
   justify-content: center;
   color: rgba(100, 150, 255, 0.8);
+  transition: color 0.3s ease;
+}
+
+.card-glass:hover .card-icon {
+  color: rgba(255, 160, 100, 0.9);
 }
 
 .card-icon svg {
@@ -407,12 +413,22 @@ body.nav-visible .hero-top-gradient {
   font-weight: 500;
   margin-bottom: 6px;
   color: #e6e6e6;
+  transition: color 0.3s ease;
+}
+
+.card-glass:hover .card-text h4 {
+  color: rgba(255, 180, 120, 0.95);
 }
 
 .card-text p {
   font-size: 14px;
   opacity: 0.7;
   line-height: 1.5;
+  transition: opacity 0.3s ease;
+}
+
+.card-glass:hover .card-text p {
+  opacity: 0.85;
 }
 
 /* Connector line between cards */
