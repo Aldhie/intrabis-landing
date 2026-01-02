@@ -214,7 +214,7 @@ if (canvas) {
   animate();
 }
 
-// ================= THICK GLOWING ENERGY LINES (Section 3: System Architecture) =================
+// ================= SMOOTH ENERGY LINES - EDGE TO EDGE (Section 3) =================
 const lightningCanvas = document.getElementById('lightning-canvas');
 
 if (lightningCanvas) {
@@ -229,78 +229,141 @@ if (lightningCanvas) {
   resizeCanvas();
   window.addEventListener('resize', resizeCanvas);
 
-  // Get positions of center hub and module cards
+  // Get element center
   function getElementCenter(element) {
     const rect = element.getBoundingClientRect();
     const parentRect = section.getBoundingClientRect();
     return {
       x: rect.left + rect.width / 2 - parentRect.left,
-      y: rect.top + rect.height / 2 - parentRect.top
+      y: rect.top + rect.height / 2 - parentRect.top,
+      width: rect.width,
+      height: rect.height
     };
   }
 
-  // Thick glowing energy line with massive bloom
+  // Calculate edge point on circle towards target
+  function getCircleEdgePoint(center, radius, targetX, targetY) {
+    const dx = targetX - center.x;
+    const dy = targetY - center.y;
+    const angle = Math.atan2(dy, dx);
+    
+    return {
+      x: center.x + Math.cos(angle) * radius,
+      y: center.y + Math.sin(angle) * radius
+    };
+  }
+
+  // Calculate edge point on rectangle towards source
+  function getRectEdgePoint(rect, sourceX, sourceY) {
+    const centerX = rect.x;
+    const centerY = rect.y;
+    
+    // Vector from rect center to source
+    const dx = sourceX - centerX;
+    const dy = sourceY - centerY;
+    
+    // Find intersection with rectangle edge
+    const halfW = rect.width / 2;
+    const halfH = rect.height / 2;
+    
+    // Calculate intersection point
+    const slope = Math.abs(dy / dx);
+    const rectSlope = halfH / halfW;
+    
+    let edgeX, edgeY;
+    
+    if (slope < rectSlope) {
+      // Hits left or right edge
+      edgeX = dx > 0 ? centerX - halfW : centerX + halfW;
+      edgeY = centerY - (edgeX - centerX) * (dy / dx);
+    } else {
+      // Hits top or bottom edge
+      edgeY = dy > 0 ? centerY - halfH : centerY + halfH;
+      edgeX = centerX - (edgeY - centerY) * (dx / dy);
+    }
+    
+    return { x: edgeX, y: edgeY };
+  }
+
+  // Energy line with edge-to-edge connection
   class EnergyLine {
-    constructor(from, to, index) {
-      this.from = from;
-      this.to = to;
+    constructor(centerHub, moduleCard, index) {
+      this.centerHub = centerHub;
+      this.moduleCard = moduleCard;
       this.index = index;
       this.opacity = 0;
-      this.maxOpacity = 0.85;
+      this.maxOpacity = 0.7;
       this.flowOffset = Math.random() * Math.PI * 2;
+      this.circleRadius = 120; // Center hub radius
     }
 
     draw(time) {
-      const dx = this.to.x - this.from.x;
-      const dy = this.to.y - this.from.y;
+      // Get edge points
+      const circleEdge = getCircleEdgePoint(
+        this.centerHub,
+        this.circleRadius,
+        this.moduleCard.x,
+        this.moduleCard.y
+      );
+      
+      const rectEdge = getRectEdgePoint(
+        this.moduleCard,
+        this.centerHub.x,
+        this.centerHub.y
+      );
+
+      const dx = rectEdge.x - circleEdge.x;
+      const dy = rectEdge.y - circleEdge.y;
       const distance = Math.sqrt(dx * dx + dy * dy);
       
-      // Perpendicular vector for curve
+      // Perpendicular for curve
       const perpX = -dy / distance;
       const perpY = dx / distance;
       
       // Gentle curve
-      const curveAmount = distance * 0.12;
+      const curveAmount = distance * 0.1;
       
-      const midX = (this.from.x + this.to.x) / 2;
-      const midY = (this.from.y + this.to.y) / 2;
+      const midX = (circleEdge.x + rectEdge.x) / 2;
+      const midY = (circleEdge.y + rectEdge.y) / 2;
       
-      // Subtle breathing animation
-      const breathe = Math.sin(time * 0.001 + this.flowOffset) * 10;
+      // Breathing animation
+      const breathe = Math.sin(time * 0.001 + this.flowOffset) * 8;
       
       const controlX = midX + perpX * (curveAmount + breathe);
       const controlY = midY + perpY * (curveAmount + breathe);
 
       // Pulsing opacity
-      this.opacity = this.maxOpacity * (0.7 + 0.3 * Math.sin(time * 0.0012 + this.flowOffset));
+      this.opacity = this.maxOpacity * (0.75 + 0.25 * Math.sin(time * 0.0012 + this.flowOffset));
 
       ctx.save();
       
-      // Draw multiple layers for THICK bloom effect
+      // Use lighter blend mode for smooth overlap
+      ctx.globalCompositeOperation = 'lighter';
+      
+      // Draw glow layers (fewer, more refined)
       const layers = [
-        { width: 30, opacity: 0.08, blur: 40 },   // Outer massive glow
-        { width: 20, opacity: 0.15, blur: 30 },   // Mid glow
-        { width: 12, opacity: 0.25, blur: 20 },   // Inner glow
-        { width: 6, opacity: 0.5, blur: 12 },     // Core glow
-        { width: 3, opacity: 0.8, blur: 6 },      // Bright center
-        { width: 1.5, opacity: 1, blur: 0 }       // Sharp core
+        { width: 20, opacity: 0.06, blur: 30 },   // Outer glow
+        { width: 12, opacity: 0.12, blur: 20 },   // Mid glow
+        { width: 6, opacity: 0.25, blur: 12 },    // Inner glow
+        { width: 3, opacity: 0.5, blur: 6 },      // Core
+        { width: 1.5, opacity: 0.8, blur: 0 }     // Sharp center
       ];
 
       layers.forEach(layer => {
         ctx.beginPath();
-        ctx.moveTo(this.from.x, this.from.y);
+        ctx.moveTo(circleEdge.x, circleEdge.y);
         ctx.quadraticCurveTo(
           controlX,
           controlY,
-          this.to.x,
-          this.to.y
+          rectEdge.x,
+          rectEdge.y
         );
         
         const layerOpacity = this.opacity * layer.opacity;
         ctx.strokeStyle = `rgba(100, 180, 255, ${layerOpacity})`;
         ctx.lineWidth = layer.width;
         ctx.shadowBlur = layer.blur;
-        ctx.shadowColor = `rgba(100, 180, 255, ${layerOpacity * 0.8})`;
+        ctx.shadowColor = `rgba(100, 180, 255, ${layerOpacity * 0.6})`;
         ctx.stroke();
       });
       
