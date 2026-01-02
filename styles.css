@@ -422,13 +422,13 @@ body.nav-visible .hero-top-gradient {
 
 .card-text p {
   font-size: 14px;
-  opacity: 0.7;
+  color: rgba(230, 230, 230, 0.7);
   line-height: 1.5;
-  transition: opacity 0.3s ease;
+  transition: color 0.3s ease;
 }
 
 .card-glass:hover .card-text p {
-  opacity: 0.85;
+  color: rgba(255, 190, 140, 0.85);
 }
 
 /* Connector line between cards */
