@@ -20,23 +20,23 @@
 <section class="hero">
 
   <!-- Dual video layers for seamless crossfade loop -->
+  <!-- Videos load dynamically via JavaScript (lazy loading) -->
   <video
     class="hero-video hero-video-1"
-    autoplay
     muted
     playsinline
-    preload="auto"
+    preload="none"
   >
-    <source src="no_watermark_movie.mp4" type="video/mp4">
+    <source type="video/mp4">
   </video>
 
   <video
     class="hero-video hero-video-2"
     muted
     playsinline
-    preload="auto"
+    preload="none"
   >
-    <source src="no_watermark_movie.mp4" type="video/mp4">
+    <source type="video/mp4">
   </video>
 
   <div class="hero-overlay"></div>
