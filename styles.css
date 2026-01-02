@@ -106,14 +106,15 @@ body.nav-visible .hero-top-gradient {
   bottom: 0;
   left: 0;
   right: 0;
-  height: 250px;
+  height: 300px;
   background: linear-gradient(
     to bottom,
     transparent 0%,
-    rgba(15, 17, 19, 0.3) 25%,
-    rgba(15, 17, 19, 0.6) 50%,
-    rgba(15, 17, 19, 0.9) 75%,
-    #0f1113 100%
+    rgba(15, 17, 19, 0.2) 20%,
+    rgba(15, 17, 19, 0.5) 40%,
+    rgba(15, 17, 19, 0.8) 65%,
+    rgba(14, 16, 18, 0.95) 85%,
+    #0e1012 100%
   );
   pointer-events: none;
   z-index: 1;
@@ -260,66 +261,59 @@ body.nav-visible .hero-top-gradient {
   margin: 0 10px;
 }
 
-/* ================= SECTION: PROBLEM WITH CONNECTED CARDS ================= */
+/* ================= SECTION: PROBLEM WITH CONNECTED CARDS (CANVAS VERSION) ================= */
 .problem-connected {
   position: relative;
   padding: 140px 40px;
   overflow: hidden;
 
-  background: linear-gradient(
-    135deg,
-    #0a0b0d 0%,
-    #0e1012 25%,
-    #12141a 50%,
-    #0f1113 75%,
-    #0a0b0d 100%
+  /* Seamless vertical gradient blend from hero */
+  background: 
+    radial-gradient(
+      ellipse 80% 50% at 50% 0%,
+      rgba(18, 22, 30, 0.4) 0%,
+      transparent 50%
+    ),
+    linear-gradient(
+      to bottom,
+      #0e1012 0%,
+      #0d0f11 15%,
+      #0f1113 30%,
+      #12141a 60%,
+      #0f1113 85%,
+      #0a0b0d 100%
   );
 }
 
-/* Floating particles background */
-.particles-bg {
+/* Add subtle top overlay for even smoother blend */
+.problem-connected::before {
+  content: '';
   position: absolute;
-  inset: 0;
-  overflow: hidden;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 200px;
+  
+  background: linear-gradient(
+    to bottom,
+    rgba(14, 16, 18, 0.8) 0%,
+    rgba(14, 16, 18, 0.4) 30%,
+    transparent 100%
+  );
+  
   pointer-events: none;
+  z-index: 0;
 }
 
-.particle {
+/* Interactive Canvas particles */
+.particles-canvas {
   position: absolute;
-  width: 2px;
-  height: 2px;
-  background: rgba(100, 150, 255, 0.4);
-  border-radius: 50%;
-  box-shadow: 0 0 8px rgba(100, 150, 255, 0.3);
-  animation: float-particle 20s infinite ease-in-out;
-}
-
-.particle:nth-child(1) { left: 10%; top: 20%; animation-delay: 0s; animation-duration: 18s; }
-.particle:nth-child(2) { left: 30%; top: 60%; animation-delay: 2s; animation-duration: 22s; }
-.particle:nth-child(3) { left: 50%; top: 30%; animation-delay: 4s; animation-duration: 20s; }
-.particle:nth-child(4) { left: 70%; top: 70%; animation-delay: 1s; animation-duration: 24s; }
-.particle:nth-child(5) { left: 85%; top: 40%; animation-delay: 3s; animation-duration: 19s; }
-.particle:nth-child(6) { left: 20%; top: 80%; animation-delay: 5s; animation-duration: 21s; }
-.particle:nth-child(7) { left: 60%; top: 15%; animation-delay: 2.5s; animation-duration: 23s; }
-.particle:nth-child(8) { left: 90%; top: 90%; animation-delay: 4.5s; animation-duration: 18s; }
-
-@keyframes float-particle {
-  0%, 100% {
-    transform: translate(0, 0) scale(1);
-    opacity: 0.3;
-  }
-  25% {
-    transform: translate(20px, -30px) scale(1.2);
-    opacity: 0.6;
-  }
-  50% {
-    transform: translate(-15px, -50px) scale(0.8);
-    opacity: 0.4;
-  }
-  75% {
-    transform: translate(30px, -20px) scale(1.1);
-    opacity: 0.5;
-  }
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
 }
 
 /* Grid layout */
@@ -551,7 +545,7 @@ body.nav-visible .hero-top-gradient {
   }
 
   .hero::after {
-    height: 150px;
+    height: 200px;
   }
 
   .hero-features {
@@ -623,6 +617,10 @@ body.nav-visible .hero-top-gradient {
   /* MOBILE: Problem Connected Section */
   .problem-connected {
     padding: 80px 20px;
+  }
+
+  .problem-connected::before {
+    height: 120px;
   }
 
   .problem-grid {
