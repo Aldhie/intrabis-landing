@@ -179,20 +179,125 @@
   </div>
 </section>
 
-<!-- ================= SECTION 3 ================= -->
-<section class="section shift center">
-  <span class="section-label">PENDEKATAN BERBEDA</span>
+<!-- ================= SECTION 3: SYSTEM ARCHITECTURE WITH LIGHTNING CONNECTIONS ================= -->
+<section class="section system-architecture">
+  <!-- Canvas for animated lightning connections -->
+  <canvas id="lightning-canvas" class="lightning-canvas"></canvas>
 
-  <h2>
-    Bisnis transportasi tidak membutuhkan<br>
-    lebih banyak tools.<br>
-    Mereka membutuhkan sistem.
-  </h2>
+  <div class="architecture-header">
+    <span class="section-label">PENDEKATAN BERBEDA</span>
+    <h2>Semua peran berjalan di atas satu fondasi.</h2>
+    <p>
+      Dari operasional harian hingga keputusan strategis, IntraBIS menyatukan<br>
+      setiap peran dalam satu sistem yang konsisten.
+    </p>
+  </div>
 
-  <p>
-    IntraBIS dirancang sebagai sistem inti yang menyatukan
-    seluruh proses operasional ke dalam satu fondasi yang konsisten.
-  </p>
+  <div class="architecture-diagram">
+    
+    <!-- Central Hub -->
+    <div class="center-hub" data-module="center">
+      <div class="hub-glow"></div>
+      <div class="hub-content">
+        <h3>IntraBIS</h3>
+        <p>System Core</p>
+      </div>
+    </div>
+
+    <!-- Module Cards (6 positions) -->
+    
+    <!-- Top Left -->
+    <div class="module-card" data-module="partnership" style="--angle: 140deg; --distance: 280px;">
+      <div class="module-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+          <circle cx="9" cy="7" r="4"/>
+          <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+          <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+        </svg>
+      </div>
+      <h4>Kemitraan & Pelanggan</h4>
+      <p>Ekosistem yang terintegrasi</p>
+    </div>
+
+    <!-- Top Right -->
+    <div class="module-card" data-module="finance" style="--angle: 40deg; --distance: 280px;">
+      <div class="module-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="2" y="5" width="20" height="14" rx="2"/>
+          <line x1="2" y1="10" x2="22" y2="10"/>
+        </svg>
+      </div>
+      <h4>Manajemen & Pengambilan Keputusan</h4>
+      <p>Satu sumber kebenaran</p>
+    </div>
+
+    <!-- Right -->
+    <div class="module-card" data-module="analytics" style="--angle: 0deg; --distance: 320px;">
+      <div class="module-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="20" x2="18" y2="10"/>
+          <line x1="12" y1="20" x2="12" y2="4"/>
+          <line x1="6" y1="20" x2="6" y2="14"/>
+        </svg>
+      </div>
+      <h4>Keuangan & Insight</h4>
+      <p>Data yang bisa dipercaya</p>
+    </div>
+
+    <!-- Bottom Right -->
+    <div class="module-card" data-module="ticketing" style="--angle: -40deg; --distance: 280px;">
+      <div class="module-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="2" y="7" width="20" height="15" rx="2" ry="2"/>
+          <polyline points="17 2 12 7 7 2"/>
+        </svg>
+      </div>
+      <h4>Tiket & Distribusi</h4>
+      <p>Terhubung langsung ke operasi</p>
+    </div>
+
+    <!-- Bottom Left -->
+    <div class="module-card" data-module="fleet" style="--angle: -140deg; --distance: 280px;">
+      <div class="module-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M14 16H9m10 0h3v-3.15a1 1 0 0 0-.84-.99L16 11l-2.7-3.6a1 1 0 0 0-.8-.4H5.24a2 2 0 0 0-1.8 1.1l-.8 1.63A6 6 0 0 0 2 12.42V16h2"/>
+          <circle cx="6.5" cy="16.5" r="2.5"/>
+          <circle cx="16.5" cy="16.5" r="2.5"/>
+        </svg>
+      </div>
+      <h4>Rute & Kapasitas</h4>
+      <p>Perencanaan yang adaptif</p>
+    </div>
+
+    <!-- Left -->
+    <div class="module-card" data-module="integration" style="--angle: 180deg; --distance: 320px;">
+      <div class="module-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polygon points="12 2 2 7 12 12 22 7 12 2"/>
+          <polyline points="2 17 12 22 22 17"/>
+          <polyline points="2 12 12 17 22 12"/>
+        </svg>
+      </div>
+      <h4>Operasional Armada</h4>
+      <p>Jadwal, kondisi, utilisasi</p>
+    </div>
+
+    <!-- Bottom Center (optional 7th) -->
+    <div class="module-card" data-module="ecosystem" style="--angle: -90deg; --distance: 260px;">
+      <div class="module-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="3" width="7" height="9" rx="1"/>
+          <rect x="14" y="3" width="7" height="5" rx="1"/>
+          <rect x="14" y="12" width="7" height="9" rx="1"/>
+          <rect x="3" y="16" width="7" height="5" rx="1"/>
+        </svg>
+      </div>
+      <h4>Integrasi & Ekosistem</h4>
+      <p>Keterhubungan tidak terbatas</p>
+    </div>
+
+  </div>
 </section>
 
 <!-- ================= SECTION 4 ================= -->
