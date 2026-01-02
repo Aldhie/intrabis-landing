@@ -73,11 +73,24 @@
 
 </section>
 
-<!-- ================= SECTION 2 ================= -->
-<section class="section problem">
-  <div class="container two-column">
+<!-- ================= SECTION 2: PROBLEM WITH CONNECTED CARDS ================= -->
+<section class="section problem-connected">
+  <!-- Floating particles background -->
+  <div class="particles-bg">
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+  </div>
 
-    <div>
+  <div class="container problem-grid">
+
+    <!-- LEFT: Content -->
+    <div class="problem-content">
       <h2>
         Pertumbuhan operasional<br>
         tidak seharusnya menciptakan kekacauan.
@@ -90,26 +103,86 @@
       </p>
     </div>
 
-    <div class="cards">
-      <div class="card">
-        <h4>Operasional Terfragmentasi</h4>
-        <p>Armada, driver, rute, tiket, dan keuangan berjalan terpisah.</p>
+    <!-- RIGHT: Connected Cards -->
+    <div class="problem-cards-vertical">
+      
+      <!-- Card 1 -->
+      <div class="card-connected">
+        <div class="card-glass">
+          <div class="card-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="3" width="7" height="7"/>
+              <rect x="14" y="3" width="7" height="7"/>
+              <rect x="3" y="14" width="7" height="7"/>
+              <rect x="14" y="14" width="7" height="7"/>
+            </svg>
+          </div>
+          <div class="card-text">
+            <h4>Operasional Terfragmentasi</h4>
+            <p>Armada, driver, rute, tiket, dan keuangan berjalan terpisah.</p>
+          </div>
+        </div>
+        <div class="connector-line">
+          <div class="connector-node"></div>
+        </div>
       </div>
 
-      <div class="card">
-        <h4>Visibilitas Terbatas</h4>
-        <p>Keputusan dibuat dari data yang terlambat dan tidak utuh.</p>
+      <!-- Card 2 -->
+      <div class="card-connected">
+        <div class="card-glass">
+          <div class="card-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+              <circle cx="12" cy="12" r="2"/>
+            </svg>
+          </div>
+          <div class="card-text">
+            <h4>Visibilitas Terbatas</h4>
+            <p>Keputusan dibuat dari data yang terlambat dan tidak utuh.</p>
+          </div>
+        </div>
+        <div class="connector-line">
+          <div class="connector-node"></div>
+        </div>
       </div>
 
-      <div class="card">
-        <h4>Ketergantungan Manual</h4>
-        <p>Pertumbuhan justru menambah risiko operasional.</p>
+      <!-- Card 3 -->
+      <div class="card-connected">
+        <div class="card-glass">
+          <div class="card-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="3"/>
+              <path d="M12 1v6m0 6v6m8.66-9v6m-17.32 0v-6"/>
+            </svg>
+          </div>
+          <div class="card-text">
+            <h4>Ketergantungan Manual</h4>
+            <p>Pertumbuhan justru menambah risiko operasional.</p>
+          </div>
+        </div>
+        <div class="connector-line">
+          <div class="connector-node"></div>
+        </div>
       </div>
 
-      <div class="card">
-        <h4>Skalabilitas Terhambat</h4>
-        <p>Semakin besar, semakin sulit dikendalikan.</p>
+      <!-- Card 4 -->
+      <div class="card-connected">
+        <div class="card-glass">
+          <div class="card-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+              <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+              <line x1="12" y1="22.08" x2="12" y2="12"/>
+            </svg>
+          </div>
+          <div class="card-text">
+            <h4>Skalabilitas Terhambat</h4>
+            <p>Semakin besar, semakin sulit dikendalikan.</p>
+          </div>
+        </div>
+        <!-- No connector line on last card -->
       </div>
+
     </div>
 
   </div>
