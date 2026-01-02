@@ -213,3 +213,153 @@ if (canvas) {
 
   animate();
 }
+
+// ================= LIGHTNING CONNECTIONS (Section 3: System Architecture) =================
+const lightningCanvas = document.getElementById('lightning-canvas');
+
+if (lightningCanvas) {
+  const ctx = lightningCanvas.getContext('2d');
+  const section = lightningCanvas.parentElement;
+  
+  function resizeCanvas() {
+    lightningCanvas.width = section.offsetWidth;
+    lightningCanvas.height = section.offsetHeight;
+  }
+  
+  resizeCanvas();
+  window.addEventListener('resize', resizeCanvas);
+
+  // Get positions of center hub and module cards
+  function getElementCenter(element) {
+    const rect = element.getBoundingClientRect();
+    const parentRect = section.getBoundingClientRect();
+    return {
+      x: rect.left + rect.width / 2 - parentRect.left,
+      y: rect.top + rect.height / 2 - parentRect.top
+    };
+  }
+
+  // Lightning bolt generator
+  class Lightning {
+    constructor(from, to) {
+      this.from = from;
+      this.to = to;
+      this.segments = [];
+      this.opacity = 0;
+      this.maxOpacity = 0.6;
+      this.generateBolt();
+    }
+
+    generateBolt() {
+      this.segments = [];
+      const dx = this.to.x - this.from.x;
+      const dy = this.to.y - this.from.y;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+      const steps = Math.floor(dist / 20);
+
+      this.segments.push({ x: this.from.x, y: this.from.y });
+
+      for (let i = 1; i < steps; i++) {
+        const t = i / steps;
+        const x = this.from.x + dx * t + (Math.random() - 0.5) * 15;
+        const y = this.from.y + dy * t + (Math.random() - 0.5) * 15;
+        this.segments.push({ x, y });
+      }
+
+      this.segments.push({ x: this.to.x, y: this.to.y });
+    }
+
+    draw() {
+      if (this.segments.length < 2) return;
+
+      ctx.save();
+      ctx.strokeStyle = `rgba(100, 180, 255, ${this.opacity})`;
+      ctx.lineWidth = 2;
+      ctx.shadowBlur = 10;
+      ctx.shadowColor = `rgba(100, 180, 255, ${this.opacity * 0.8})`;
+
+      ctx.beginPath();
+      ctx.moveTo(this.segments[0].x, this.segments[0].y);
+
+      for (let i = 1; i < this.segments.length; i++) {
+        ctx.lineTo(this.segments[i].x, this.segments[i].y);
+      }
+
+      ctx.stroke();
+
+      // Draw glow line (thicker, more transparent)
+      ctx.strokeStyle = `rgba(100, 180, 255, ${this.opacity * 0.3})`;
+      ctx.lineWidth = 4;
+      ctx.stroke();
+
+      ctx.restore();
+    }
+
+    pulse(time) {
+      // Pulsing opacity animation
+      this.opacity = this.maxOpacity * (0.5 + 0.5 * Math.sin(time * 0.002 + this.from.x));
+    }
+  }
+
+  // Create lightning bolts
+  const lightnings = [];
+  let centerHub, moduleCards;
+
+  function initLightnings() {
+    centerHub = document.querySelector('.center-hub');
+    moduleCards = document.querySelectorAll('.module-card');
+
+    if (!centerHub || moduleCards.length === 0) return;
+
+    const centerPos = getElementCenter(centerHub);
+
+    moduleCards.forEach(card => {
+      const cardPos = getElementCenter(card);
+      lightnings.push(new Lightning(centerPos, cardPos));
+    });
+  }
+
+  // Wait for DOM to be ready
+  setTimeout(initLightnings, 100);
+
+  // Animation loop
+  let lastTime = Date.now();
+  let regenerateTimer = 0;
+
+  function animateLightning() {
+    const currentTime = Date.now();
+    const deltaTime = currentTime - lastTime;
+    lastTime = currentTime;
+
+    ctx.clearRect(0, 0, lightningCanvas.width, lightningCanvas.height);
+
+    // Regenerate bolts occasionally for variation
+    regenerateTimer += deltaTime;
+    if (regenerateTimer > 3000) {
+      lightnings.forEach(lightning => lightning.generateBolt());
+      regenerateTimer = 0;
+    }
+
+    // Draw and animate
+    lightnings.forEach(lightning => {
+      lightning.pulse(currentTime);
+      lightning.draw();
+    });
+
+    requestAnimationFrame(animateLightning);
+  }
+
+  // Start animation after lightnings are initialized
+  setTimeout(() => {
+    if (lightnings.length > 0) {
+      animateLightning();
+    }
+  }, 200);
+
+  // Reinitialize on resize
+  window.addEventListener('resize', () => {
+    resizeCanvas();
+    lightnings.length = 0;
+    setTimeout(initLightnings, 100);
+  });
+}
