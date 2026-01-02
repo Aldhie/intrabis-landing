@@ -214,7 +214,7 @@ if (canvas) {
   animate();
 }
 
-// ================= SMOOTH CURVED FLOWING LINES (Section 3: System Architecture) =================
+// ================= THICK GLOWING ENERGY LINES (Section 3: System Architecture) =================
 const lightningCanvas = document.getElementById('lightning-canvas');
 
 if (lightningCanvas) {
@@ -239,15 +239,15 @@ if (lightningCanvas) {
     };
   }
 
-  // Smooth curved flowing line
-  class FlowingLine {
+  // Thick glowing energy line with massive bloom
+  class EnergyLine {
     constructor(from, to, index) {
       this.from = from;
       this.to = to;
-      this.index = index; // For offset
+      this.index = index;
       this.opacity = 0;
-      this.maxOpacity = 0.4;
-      this.flowOffset = Math.random() * Math.PI * 2; // Random starting phase
+      this.maxOpacity = 0.85;
+      this.flowOffset = Math.random() * Math.PI * 2;
     }
 
     draw(time) {
@@ -255,63 +255,64 @@ if (lightningCanvas) {
       const dy = this.to.y - this.from.y;
       const distance = Math.sqrt(dx * dx + dy * dy);
       
-      // Perpendicular vector for curve offset
+      // Perpendicular vector for curve
       const perpX = -dy / distance;
       const perpY = dx / distance;
       
-      // Curve amount based on distance (gentle arc)
-      const curveAmount = distance * 0.15;
+      // Gentle curve
+      const curveAmount = distance * 0.12;
       
-      // Control point for smooth bezier curve
       const midX = (this.from.x + this.to.x) / 2;
       const midY = (this.from.y + this.to.y) / 2;
       
-      // Add sine wave animation for flowing effect
-      const waveOffset = Math.sin(time * 0.001 + this.flowOffset) * 20;
+      // Subtle breathing animation
+      const breathe = Math.sin(time * 0.001 + this.flowOffset) * 10;
       
-      const controlX = midX + perpX * (curveAmount + waveOffset);
-      const controlY = midY + perpY * (curveAmount + waveOffset);
+      const controlX = midX + perpX * (curveAmount + breathe);
+      const controlY = midY + perpY * (curveAmount + breathe);
 
       // Pulsing opacity
-      this.opacity = this.maxOpacity * (0.6 + 0.4 * Math.sin(time * 0.0015 + this.flowOffset));
+      this.opacity = this.maxOpacity * (0.7 + 0.3 * Math.sin(time * 0.0012 + this.flowOffset));
 
       ctx.save();
       
-      // Draw multiple parallel lines for thickness
-      for (let i = 0; i < 3; i++) {
-        const offset = (i - 1) * 1.5; // -1.5, 0, 1.5
-        const lineOpacity = this.opacity * (i === 1 ? 1 : 0.5); // Center line brighter
-        
+      // Draw multiple layers for THICK bloom effect
+      const layers = [
+        { width: 30, opacity: 0.08, blur: 40 },   // Outer massive glow
+        { width: 20, opacity: 0.15, blur: 30 },   // Mid glow
+        { width: 12, opacity: 0.25, blur: 20 },   // Inner glow
+        { width: 6, opacity: 0.5, blur: 12 },     // Core glow
+        { width: 3, opacity: 0.8, blur: 6 },      // Bright center
+        { width: 1.5, opacity: 1, blur: 0 }       // Sharp core
+      ];
+
+      layers.forEach(layer => {
         ctx.beginPath();
-        ctx.moveTo(
-          this.from.x + perpX * offset,
-          this.from.y + perpY * offset
-        );
-        
+        ctx.moveTo(this.from.x, this.from.y);
         ctx.quadraticCurveTo(
-          controlX + perpX * offset,
-          controlY + perpY * offset,
-          this.to.x + perpX * offset,
-          this.to.y + perpY * offset
+          controlX,
+          controlY,
+          this.to.x,
+          this.to.y
         );
         
-        // Gradient stroke for glow effect
-        ctx.strokeStyle = `rgba(100, 180, 255, ${lineOpacity})`;
-        ctx.lineWidth = i === 1 ? 2 : 1;
-        ctx.shadowBlur = 15;
-        ctx.shadowColor = `rgba(100, 180, 255, ${lineOpacity * 0.6})`;
+        const layerOpacity = this.opacity * layer.opacity;
+        ctx.strokeStyle = `rgba(100, 180, 255, ${layerOpacity})`;
+        ctx.lineWidth = layer.width;
+        ctx.shadowBlur = layer.blur;
+        ctx.shadowColor = `rgba(100, 180, 255, ${layerOpacity * 0.8})`;
         ctx.stroke();
-      }
+      });
       
       ctx.restore();
     }
   }
 
-  // Create flowing lines
-  const flowingLines = [];
+  // Create energy lines
+  const energyLines = [];
   let centerHub, moduleCards;
 
-  function initFlowingLines() {
+  function initEnergyLines() {
     centerHub = document.querySelector('.center-hub');
     moduleCards = document.querySelectorAll('.module-card');
 
@@ -321,12 +322,11 @@ if (lightningCanvas) {
 
     moduleCards.forEach((card, index) => {
       const cardPos = getElementCenter(card);
-      flowingLines.push(new FlowingLine(centerPos, cardPos, index));
+      energyLines.push(new EnergyLine(centerPos, cardPos, index));
     });
   }
 
-  // Wait for DOM to be ready
-  setTimeout(initFlowingLines, 100);
+  setTimeout(initEnergyLines, 100);
 
   // Animation loop
   function animateLines() {
@@ -334,17 +334,15 @@ if (lightningCanvas) {
 
     ctx.clearRect(0, 0, lightningCanvas.width, lightningCanvas.height);
 
-    // Draw all flowing lines
-    flowingLines.forEach(line => {
+    energyLines.forEach(line => {
       line.draw(currentTime);
     });
 
     requestAnimationFrame(animateLines);
   }
 
-  // Start animation after lines are initialized
   setTimeout(() => {
-    if (flowingLines.length > 0) {
+    if (energyLines.length > 0) {
       animateLines();
     }
   }, 200);
@@ -352,7 +350,7 @@ if (lightningCanvas) {
   // Reinitialize on resize
   window.addEventListener('resize', () => {
     resizeCanvas();
-    flowingLines.length = 0;
-    setTimeout(initFlowingLines, 100);
+    energyLines.length = 0;
+    setTimeout(initEnergyLines, 100);
   });
 }
