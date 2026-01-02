@@ -1,71 +1,10 @@
-// ================= LAZY LOAD VIDEO (MEDIUM SENSITIVITY) =================
-// Load video when user scrolls within 500px of hero section
-
-const video1 = document.querySelector('.hero-video-1');
-const video2 = document.querySelector('.hero-video-2');
-const heroSection = document.querySelector('.hero');
-
-let videosLoaded = false;
-
-function loadVideos() {
-  if (videosLoaded) return;
-  
-  const videoSrc = 'no_watermark_movie.mp4';
-  
-  // Load video sources
-  const source1 = video1.querySelector('source');
-  const source2 = video2.querySelector('source');
-  
-  if (source1 && source2) {
-    source1.src = videoSrc;
-    source2.src = videoSrc;
-    
-    video1.load();
-    video2.load();
-    
-    videosLoaded = true;
-    
-    // Start video system after first video is ready
-    video1.addEventListener('loadeddata', () => {
-      initializeVideoLoop();
-    }, { once: true });
-  }
-}
-
-// Check if hero is near viewport (500px threshold = medium sensitivity)
-function checkVideoLoad() {
-  if (videosLoaded) return;
-  
-  const rect = heroSection.getBoundingClientRect();
-  const threshold = 500; // Medium sensitivity: start loading 500px before visible
-  
-  // Load when hero is within 500px of viewport
-  if (rect.top < window.innerHeight + threshold && rect.bottom > -threshold) {
-    loadVideos();
-  }
-}
-
-// Initial check (for when page loads with hero already visible)
-checkVideoLoad();
-
-// Listen for scroll events
-let scrollTicking = false;
-window.addEventListener('scroll', () => {
-  if (!scrollTicking && !videosLoaded) {
-    window.requestAnimationFrame(() => {
-      checkVideoLoad();
-      scrollTicking = false;
-    });
-    scrollTicking = true;
-  }
-}, { passive: true });
-
 // ================= SEAMLESS VIDEO CROSSFADE LOOP =================
 // Uses 2 video layers that crossfade for buttery smooth loop
 
-function initializeVideoLoop() {
-  if (!video1 || !video2) return;
-  
+const video1 = document.querySelector('.hero-video-1');
+const video2 = document.querySelector('.hero-video-2');
+
+if (video1 && video2) {
   // Set playback speed to 0.75x (subtle slow motion)
   video1.playbackRate = 0.75;
   video2.playbackRate = 0.75;
