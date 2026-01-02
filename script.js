@@ -214,7 +214,7 @@ if (canvas) {
   animate();
 }
 
-// ================= LIGHTNING CONNECTIONS (Section 3: System Architecture) =================
+// ================= SMOOTH CURVED FLOWING LINES (Section 3: System Architecture) =================
 const lightningCanvas = document.getElementById('lightning-canvas');
 
 if (lightningCanvas) {
@@ -239,73 +239,79 @@ if (lightningCanvas) {
     };
   }
 
-  // Lightning bolt generator
-  class Lightning {
-    constructor(from, to) {
+  // Smooth curved flowing line
+  class FlowingLine {
+    constructor(from, to, index) {
       this.from = from;
       this.to = to;
-      this.segments = [];
+      this.index = index; // For offset
       this.opacity = 0;
-      this.maxOpacity = 0.6;
-      this.generateBolt();
+      this.maxOpacity = 0.4;
+      this.flowOffset = Math.random() * Math.PI * 2; // Random starting phase
     }
 
-    generateBolt() {
-      this.segments = [];
+    draw(time) {
       const dx = this.to.x - this.from.x;
       const dy = this.to.y - this.from.y;
-      const dist = Math.sqrt(dx * dx + dy * dy);
-      const steps = Math.floor(dist / 20);
+      const distance = Math.sqrt(dx * dx + dy * dy);
+      
+      // Perpendicular vector for curve offset
+      const perpX = -dy / distance;
+      const perpY = dx / distance;
+      
+      // Curve amount based on distance (gentle arc)
+      const curveAmount = distance * 0.15;
+      
+      // Control point for smooth bezier curve
+      const midX = (this.from.x + this.to.x) / 2;
+      const midY = (this.from.y + this.to.y) / 2;
+      
+      // Add sine wave animation for flowing effect
+      const waveOffset = Math.sin(time * 0.001 + this.flowOffset) * 20;
+      
+      const controlX = midX + perpX * (curveAmount + waveOffset);
+      const controlY = midY + perpY * (curveAmount + waveOffset);
 
-      this.segments.push({ x: this.from.x, y: this.from.y });
-
-      for (let i = 1; i < steps; i++) {
-        const t = i / steps;
-        const x = this.from.x + dx * t + (Math.random() - 0.5) * 15;
-        const y = this.from.y + dy * t + (Math.random() - 0.5) * 15;
-        this.segments.push({ x, y });
-      }
-
-      this.segments.push({ x: this.to.x, y: this.to.y });
-    }
-
-    draw() {
-      if (this.segments.length < 2) return;
+      // Pulsing opacity
+      this.opacity = this.maxOpacity * (0.6 + 0.4 * Math.sin(time * 0.0015 + this.flowOffset));
 
       ctx.save();
-      ctx.strokeStyle = `rgba(100, 180, 255, ${this.opacity})`;
-      ctx.lineWidth = 2;
-      ctx.shadowBlur = 10;
-      ctx.shadowColor = `rgba(100, 180, 255, ${this.opacity * 0.8})`;
-
-      ctx.beginPath();
-      ctx.moveTo(this.segments[0].x, this.segments[0].y);
-
-      for (let i = 1; i < this.segments.length; i++) {
-        ctx.lineTo(this.segments[i].x, this.segments[i].y);
+      
+      // Draw multiple parallel lines for thickness
+      for (let i = 0; i < 3; i++) {
+        const offset = (i - 1) * 1.5; // -1.5, 0, 1.5
+        const lineOpacity = this.opacity * (i === 1 ? 1 : 0.5); // Center line brighter
+        
+        ctx.beginPath();
+        ctx.moveTo(
+          this.from.x + perpX * offset,
+          this.from.y + perpY * offset
+        );
+        
+        ctx.quadraticCurveTo(
+          controlX + perpX * offset,
+          controlY + perpY * offset,
+          this.to.x + perpX * offset,
+          this.to.y + perpY * offset
+        );
+        
+        // Gradient stroke for glow effect
+        ctx.strokeStyle = `rgba(100, 180, 255, ${lineOpacity})`;
+        ctx.lineWidth = i === 1 ? 2 : 1;
+        ctx.shadowBlur = 15;
+        ctx.shadowColor = `rgba(100, 180, 255, ${lineOpacity * 0.6})`;
+        ctx.stroke();
       }
-
-      ctx.stroke();
-
-      // Draw glow line (thicker, more transparent)
-      ctx.strokeStyle = `rgba(100, 180, 255, ${this.opacity * 0.3})`;
-      ctx.lineWidth = 4;
-      ctx.stroke();
-
+      
       ctx.restore();
-    }
-
-    pulse(time) {
-      // Pulsing opacity animation
-      this.opacity = this.maxOpacity * (0.5 + 0.5 * Math.sin(time * 0.002 + this.from.x));
     }
   }
 
-  // Create lightning bolts
-  const lightnings = [];
+  // Create flowing lines
+  const flowingLines = [];
   let centerHub, moduleCards;
 
-  function initLightnings() {
+  function initFlowingLines() {
     centerHub = document.querySelector('.center-hub');
     moduleCards = document.querySelectorAll('.module-card');
 
@@ -313,53 +319,40 @@ if (lightningCanvas) {
 
     const centerPos = getElementCenter(centerHub);
 
-    moduleCards.forEach(card => {
+    moduleCards.forEach((card, index) => {
       const cardPos = getElementCenter(card);
-      lightnings.push(new Lightning(centerPos, cardPos));
+      flowingLines.push(new FlowingLine(centerPos, cardPos, index));
     });
   }
 
   // Wait for DOM to be ready
-  setTimeout(initLightnings, 100);
+  setTimeout(initFlowingLines, 100);
 
   // Animation loop
-  let lastTime = Date.now();
-  let regenerateTimer = 0;
-
-  function animateLightning() {
+  function animateLines() {
     const currentTime = Date.now();
-    const deltaTime = currentTime - lastTime;
-    lastTime = currentTime;
 
     ctx.clearRect(0, 0, lightningCanvas.width, lightningCanvas.height);
 
-    // Regenerate bolts occasionally for variation
-    regenerateTimer += deltaTime;
-    if (regenerateTimer > 3000) {
-      lightnings.forEach(lightning => lightning.generateBolt());
-      regenerateTimer = 0;
-    }
-
-    // Draw and animate
-    lightnings.forEach(lightning => {
-      lightning.pulse(currentTime);
-      lightning.draw();
+    // Draw all flowing lines
+    flowingLines.forEach(line => {
+      line.draw(currentTime);
     });
 
-    requestAnimationFrame(animateLightning);
+    requestAnimationFrame(animateLines);
   }
 
-  // Start animation after lightnings are initialized
+  // Start animation after lines are initialized
   setTimeout(() => {
-    if (lightnings.length > 0) {
-      animateLightning();
+    if (flowingLines.length > 0) {
+      animateLines();
     }
   }, 200);
 
   // Reinitialize on resize
   window.addEventListener('resize', () => {
     resizeCanvas();
-    lightnings.length = 0;
-    setTimeout(initLightnings, 100);
+    flowingLines.length = 0;
+    setTimeout(initFlowingLines, 100);
   });
 }
