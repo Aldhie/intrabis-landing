@@ -476,6 +476,135 @@ body.nav-visible .hero-top-gradient {
   }
 }
 
+/* ================= SECTION 3: COSMIC GRADIENT SYSTEM ================= */
+.section-3 {
+  position: relative;
+  padding: 180px 40px;
+  text-align: center;
+  overflow: hidden;
+  
+  /* Multi-layer gradient background system */
+  background:
+    radial-gradient(
+      1200px 600px at 50% 30%,
+      rgba(45, 108, 223, 0.12),
+      transparent 60%
+    ),
+    linear-gradient(
+      180deg,
+      #0B1C2D 0%,
+      #0F2A44 40%,
+      #070A0F 100%
+    );
+  
+  color: #E6EBF2;
+}
+
+/* Procedural noise texture layer */
+.section-3::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.5'/%3E%3C/svg%3E");
+  opacity: 0.04;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Content container */
+.section-3-container {
+  position: relative;
+  max-width: 920px;
+  margin: 0 auto;
+  z-index: 1;
+}
+
+/* Eyebrow label */
+.section-eyebrow {
+  display: block;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(230, 235, 242, 0.6);
+  margin-bottom: 32px;
+  
+  animation: fadeSlideDown 0.8s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+}
+
+/* Main title */
+.section-title {
+  font-family: 'Manrope', 'Inter', system-ui, -apple-system, sans-serif;
+  font-size: clamp(32px, 3.5vw + 1rem, 52px);
+  font-weight: 500;
+  line-height: 1.25;
+  color: #E6EBF2;
+  margin-bottom: 28px;
+  
+  animation: fadeSlideUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.2s backwards;
+}
+
+/* Emphasis line (strong tag) */
+.section-title strong {
+  display: block;
+  color: #AFC6FF;
+  font-weight: 500;
+  margin-top: 8px;
+}
+
+/* Description paragraph */
+.section-description {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.7;
+  color: rgba(230, 235, 242, 0.75);
+  max-width: 720px;
+  margin: 0 auto;
+  
+  animation: fadeIn 1s cubic-bezier(0.16, 1, 0.3, 1) 0.4s backwards;
+}
+
+/* Entrance animations */
+@keyframes fadeSlideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* ================= OLD SECTION 3 (PRESERVED FOR ROLLBACK) ================= */
+/*
+.shift {
+  background: #14171a;
+}
+*/
+
 /* ================= GENERAL SECTIONS ================= */
 .section {
   padding: 120px 40px;
@@ -510,6 +639,10 @@ body.nav-visible .hero-top-gradient {
 .card, .pillar {
   background: rgba(255,255,255,0.04);
   padding: 28px;
+}
+
+.why {
+  background: #0f1113;
 }
 
 .vision {
@@ -673,5 +806,19 @@ body.nav-visible .hero-top-gradient {
   .connector-line {
     height: 32px;
     margin-left: 39px;
+  }
+  
+  /* MOBILE: Section 3 */
+  .section-3 {
+    padding: 100px 24px;
+  }
+  
+  .section-title {
+    line-height: 1.35;
+  }
+  
+  .section-description {
+    font-size: 15px;
+    line-height: 1.65;
   }
 }
