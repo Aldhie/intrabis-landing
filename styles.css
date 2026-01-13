@@ -500,6 +500,27 @@ body.nav-visible .hero-top-gradient {
   color: #E6EBF2;
 }
 
+/* Seamless blend overlay from Section 2 */
+.section-3::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 240px;
+  
+  background: linear-gradient(
+    to bottom,
+    rgba(10, 11, 13, 0.95) 0%,
+    rgba(10, 11, 13, 0.7) 20%,
+    rgba(10, 13, 18, 0.4) 50%,
+    transparent 100%
+  );
+  
+  pointer-events: none;
+  z-index: 1;
+}
+
 /* Procedural noise texture layer */
 .section-3::after {
   content: "";
@@ -516,7 +537,7 @@ body.nav-visible .hero-top-gradient {
   position: relative;
   max-width: 920px;
   margin: 0 auto;
-  z-index: 1;
+  z-index: 2;
 }
 
 /* Eyebrow label */
@@ -811,6 +832,10 @@ body.nav-visible .hero-top-gradient {
   /* MOBILE: Section 3 */
   .section-3 {
     padding: 100px 24px;
+  }
+  
+  .section-3::before {
+    height: 160px;
   }
   
   .section-title {
