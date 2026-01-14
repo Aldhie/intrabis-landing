@@ -11,6 +11,21 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Manrope:wght@500;600&display=swap" rel="stylesheet">
   
   <link rel="stylesheet" href="styles.css">
+
+  <!-- Section 3 tagline tweaks (one-line + stronger punctuation) -->
+  <style>
+    .section-title--tagline { white-space: nowrap; }
+    .section-title--tagline strong { display: inline; font-weight: 600; }
+    .section-title--tagline .punct {
+      font-size: 1.18em;
+      line-height: 0;
+      position: relative;
+      top: 0.06em;
+    }
+    @media (max-width: 420px) {
+      .section-title--tagline { white-space: normal; }
+    }
+  </style>
 </head>
 <body>
 
@@ -190,13 +205,11 @@
   <div class="section-3-container">
     <span class="section-eyebrow">DIRANCANG UNTUK KETENANGAN</span>
     
-    <h2 class="section-title">
-      Satu Sistem,<br>
-      <strong>Tanpa Drama</strong>
+    <h2 class="section-title section-title--tagline">
+      <strong>Satu Sistem<span class="punct">.</span> Tanpa Drama<span class="punct">.</span></strong>
     </h2>
     
     <p class="section-description">
-      Bukan tools tambahan. Bukan aplikasi terpisah.<br>
       IntraBIS adalah sistem terintegrasi untuk operasi transportasi yang mulus.
     </p>
   </div>
