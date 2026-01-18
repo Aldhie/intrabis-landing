@@ -16,19 +16,8 @@
   <style>
     .section-title--tagline { white-space: nowrap; }
     .section-title--tagline strong { display: inline; font-weight: 600; }
-    .section-title--tagline .punct {
-      font-size: 1.18em;
-      line-height: 0;
-      position: relative;
-      top: 0-0.0806em;
-        display: inline-block;
-        width: 0.25em;
-        height: 0.25em;
-        background-color: currentColor;
-        border-radius: 50%;
-        vertical-align: middle;
-    }
-    @media (max-width: 420px) {
+ .section-title--tagline .punct { display: none; }  .section-title--tagline strong::after { content: '•'; margin: 0 0.1em; font-size: 0.8em; vertical-align: -0.05em; }      font-size: 1.18em;
+      edia (max-width: 420px) {
       .section-title--tagline { white-space: normal; }
     }
   </style>
