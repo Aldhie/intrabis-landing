@@ -604,6 +604,10 @@ body.nav-visible .hero-top-gradient {
   margin-bottom: 10px;
 }
 
+.s3-reveal .reveal-line {
+  display: block;
+}
+
 .s3-reveal p {
   max-width: 720px;
   font-size: 15px;
@@ -612,7 +616,6 @@ body.nav-visible .hero-top-gradient {
 
 .reveal-item,
 .reveal-line {
-  display: inline-block;
   opacity: 0;
   transform: translateY(16px);
   filter: blur(12px);
@@ -637,12 +640,21 @@ body.nav-visible .hero-top-gradient {
   transition-delay: 120ms;
 }
 
-.s3-reveal .reveal-line {
+/* Line 1 appears, then a deliberate pause, then line 2 */
+.s3-reveal .reveal-line-1 {
   transition-delay: 220ms;
 }
 
+.s3-reveal .reveal-line-2 {
+  transition-delay: 560ms;
+}
+
 .s3-reveal p.reveal-item {
-  transition-delay: 420ms;
+  transition-delay: 820ms;
+}
+
+.mid-dots {
+  opacity: 0.82;
 }
 
 .dot {
