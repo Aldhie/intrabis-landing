@@ -586,8 +586,8 @@ body.nav-visible .hero-top-gradient {
   );
 
   opacity: 0;
-  transform: scale(0.98);
-  transition: opacity 900ms ease, transform 900ms ease;
+  transform: scale(0.975);
+  transition: opacity 1200ms ease, transform 1200ms ease;
   pointer-events: none;
 }
 
@@ -615,13 +615,13 @@ body.nav-visible .hero-top-gradient {
 .reveal-line {
   display: inline-block;
   opacity: 0;
-  transform: translateY(16px);
-  filter: blur(12px);
+  transform: translateY(28px) scale(0.985);
+  filter: blur(18px);
 
   transition:
-    opacity 700ms ease,
-    transform 700ms ease,
-    filter 900ms ease;
+    opacity 980ms cubic-bezier(0.16, 1, 0.3, 1),
+    transform 980ms cubic-bezier(0.16, 1, 0.3, 1),
+    filter 1200ms cubic-bezier(0.16, 1, 0.3, 1);
 
   will-change: transform, opacity, filter;
 }
@@ -629,26 +629,36 @@ body.nav-visible .hero-top-gradient {
 .s3-reveal.in-view .reveal-item,
 .s3-reveal.in-view .reveal-line {
   opacity: 1;
-  transform: translateY(0);
+  transform: translateY(0) scale(1);
   filter: blur(0);
 }
 
-/* Stagger */
+/* Stagger (slower + more noticeable pause) */
 .s3-reveal .reveal-item {
-  transition-delay: 120ms;
+  transition-delay: 180ms;
 }
 
 .s3-reveal .reveal-line-1 {
-  transition-delay: 220ms;
+  transition-delay: 420ms;
 }
 
 .s3-reveal .reveal-line-2 {
-  transition-delay: 560ms;
+  transition-delay: 1100ms;
   margin-left: 0.22em;
 }
 
 .s3-reveal p.reveal-item {
-  transition-delay: 820ms;
+  transition-delay: 1600ms;
+}
+
+/* Subtle punch on the second phrase */
+.s3-reveal .reveal-line-2 {
+  text-shadow: 0 0 0 rgba(100, 150, 255, 0);
+  transition-property: opacity, transform, filter, text-shadow;
+}
+
+.s3-reveal.in-view .reveal-line-2 {
+  text-shadow: 0 0 28px rgba(100, 150, 255, 0.16);
 }
 
 .dot {
