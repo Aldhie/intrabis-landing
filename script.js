@@ -8,10 +8,10 @@ if (video1 && video2) {
   // Set playback speed to 0.75x (subtle slow motion)
   video1.playbackRate = 0.75;
   video2.playbackRate = 0.75;
-  
+
   let activeVideo = video1;
   let inactiveVideo = video2;
-  
+
   // Start first video
   video1.play().catch(() => {
     // Autoplay blocked, silently handle
@@ -21,33 +21,33 @@ if (video1 && video2) {
     activeVideo.addEventListener('timeupdate', function checkLoop() {
       // Start crossfade 1.5 seconds before end
       const timeLeft = activeVideo.duration - activeVideo.currentTime;
-      
+
       if (timeLeft <= 1.5 && timeLeft > 0) {
         // Start inactive video from beginning
         inactiveVideo.currentTime = 0;
         inactiveVideo.playbackRate = 0.75; // Ensure same speed
         inactiveVideo.play().catch(() => {});
-        
+
         // Crossfade: fade out active, fade in inactive
         activeVideo.style.opacity = '0';
         inactiveVideo.style.opacity = '1';
-        
+
         // Swap references after crossfade completes
         setTimeout(() => {
           [activeVideo, inactiveVideo] = [inactiveVideo, activeVideo];
           inactiveVideo.pause();
           inactiveVideo.currentTime = 0;
         }, 1000); // Match CSS transition duration
-        
+
         // Remove listener to avoid multiple triggers
         activeVideo.removeEventListener('timeupdate', checkLoop);
-        
+
         // Setup listener on new active video
         setTimeout(() => setupCrossfade(), 1000);
       }
     });
   }
-  
+
   // Initialize crossfade system
   setupCrossfade();
 }
@@ -92,13 +92,13 @@ const canvas = document.getElementById('particles-canvas');
 if (canvas) {
   const ctx = canvas.getContext('2d');
   const section = canvas.parentElement;
-  
+
   // Set canvas size
   function resizeCanvas() {
     canvas.width = section.offsetWidth;
     canvas.height = section.offsetHeight;
   }
-  
+
   resizeCanvas();
   window.addEventListener('resize', resizeCanvas);
 
@@ -136,7 +136,7 @@ if (canvas) {
         const dx = mouse.x - this.x;
         const dy = mouse.y - this.y;
         const dist = Math.sqrt(dx * dx + dy * dy);
-        
+
         if (dist < mouse.radius) {
           const force = (mouse.radius - dist) / mouse.radius;
           this.vx -= (dx / dist) * force * 0.5;
@@ -162,7 +162,7 @@ if (canvas) {
       ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
       ctx.fillStyle = 'rgba(100, 150, 255, 0.5)';
       ctx.fill();
-      
+
       // Glow
       ctx.shadowBlur = 8;
       ctx.shadowColor = 'rgba(100, 150, 255, 0.3)';
@@ -212,4 +212,21 @@ if (canvas) {
   }
 
   animate();
+}
+
+// ================= SECTION 3: CINEMATIC REVEAL (IntersectionObserver) =================
+const section3 = document.querySelector('.s3-reveal');
+
+if (section3) {
+  const io = new IntersectionObserver(
+    ([entry]) => {
+      if (entry.isIntersecting) {
+        section3.classList.add('in-view');
+        io.disconnect();
+      }
+    },
+    { threshold: 0.35 }
+  );
+
+  io.observe(section3);
 }
