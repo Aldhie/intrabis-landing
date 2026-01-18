@@ -264,7 +264,7 @@ body.nav-visible .hero-top-gradient {
 /* ================= SECTION: PROBLEM WITH CONNECTED CARDS (CANVAS VERSION) ================= */
 .problem-connected {
   position: relative;
-  padding: 110px 40px 160px;
+  padding: 80px 40px 150px;
   overflow: hidden;
 
   /* Seamless vertical gradient blend from hero */
@@ -292,7 +292,7 @@ body.nav-visible .hero-top-gradient {
   top: 0;
   left: 0;
   right: 0;
-  height: 170px;
+  height: 120px;
   
   background: linear-gradient(
     to bottom,
