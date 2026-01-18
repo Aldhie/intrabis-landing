@@ -264,7 +264,7 @@ body.nav-visible .hero-top-gradient {
 /* ================= SECTION: PROBLEM WITH CONNECTED CARDS (CANVAS VERSION) ================= */
 .problem-connected {
   position: relative;
-  padding: 80px 40px 150px;
+  padding: 80px 40px 110px;
   overflow: hidden;
 
   /* Seamless vertical gradient blend from hero */
@@ -312,7 +312,7 @@ body.nav-visible .hero-top-gradient {
   left: 0;
   right: 0;
   bottom: 0;
-  height: 140px;
+  height: 100px;
 
   background: linear-gradient(
     to bottom,
@@ -840,11 +840,15 @@ body.nav-visible .hero-top-gradient {
 
   /* MOBILE: Problem Connected Section */
   .problem-connected {
-    padding: 70px 20px 110px;
+    padding: 70px 20px 90px;
   }
 
   .problem-connected::before {
-    height: 100px;
+    height: 60px;
+  }
+
+  .problem-connected::after {
+    height: 90px;
   }
 
   .problem-grid {
