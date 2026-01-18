@@ -476,156 +476,6 @@ body.nav-visible .hero-top-gradient {
   }
 }
 
-/* ================= SECTION 3: REFINED COSMIC ELEGANCE ================= */
-.section-3 {
-  position: relative;
-  padding: 180px 40px;
-  text-align: center;
-  overflow: hidden;
-  
-  /* Refined multi-layer gradient: desaturated elegance */
-  background:
-    radial-gradient(
-      1200px 600px at 50% 30%,
-      rgba(65, 95, 145, 0.08),
-      transparent 60%
-    ),
-    linear-gradient(
-      180deg,
-      #0A0D12 0%,
-      #10141C 40%,
-      #070A0E 100%
-    );
-  
-  color: #E6EBF2;
-}
-
-/* Seamless blend overlay from Section 2 */
-.section-3::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 240px;
-  
-  background: linear-gradient(
-    to bottom,
-    rgba(10, 11, 13, 0.95) 0%,
-    rgba(10, 11, 13, 0.7) 20%,
-    rgba(10, 13, 18, 0.4) 50%,
-    transparent 100%
-  );
-  
-  pointer-events: none;
-  z-index: 1;
-}
-
-/* Procedural noise texture layer */
-.section-3::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.5'/%3E%3C/svg%3E");
-  opacity: 0.04;
-  pointer-events: none;
-  z-index: 0;
-}
-
-/* Content container */
-.section-3-container {
-  position: relative;
-  max-width: 920px;
-  margin: 0 auto;
-  z-index: 2;
-}
-
-/* Eyebrow label */
-.section-eyebrow {
-  display: block;
-  font-family: 'Inter', system-ui, -apple-system, sans-serif;
-  font-size: 12px;
-  font-weight: 400;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: rgba(230, 235, 242, 0.6);
-  margin-bottom: 32px;
-  
-  animation: fadeSlideDown 0.8s cubic-bezier(0.16, 1, 0.3, 1) backwards;
-}
-
-/* Main title */
-.section-title {
-  font-family: 'Manrope', 'Inter', system-ui, -apple-system, sans-serif;
-  font-size: clamp(32px, 3.5vw + 1rem, 52px);
-  font-weight: 500;
-  line-height: 1.25;
-  color: #E6EBF2;
-  margin-bottom: 28px;
-  
-  animation: fadeSlideUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.2s backwards;
-}
-
-/* Emphasis line with refined steel blue */
-.section-title strong {
-  display: block;
-  color: #B8C8E0;
-  font-weight: 500;
-  margin-top: 8px;
-}
-
-/* Description paragraph */
-.section-description {
-  font-family: 'Inter', system-ui, -apple-system, sans-serif;
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 1.7;
-  color: rgba(230, 235, 242, 0.75);
-  max-width: 720px;
-  margin: 0 auto;
-  
-  animation: fadeIn 1s cubic-bezier(0.16, 1, 0.3, 1) 0.4s backwards;
-}
-
-/* Entrance animations */
-@keyframes fadeSlideDown {
-  from {
-    opacity: 0;
-    transform: translateY(-16px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes fadeSlideUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-/* ================= OLD SECTION 3 (PRESERVED FOR ROLLBACK) ================= */
-/*
-.shift {
-  background: #14171a;
-}
-*/
-
 /* ================= GENERAL SECTIONS ================= */
 .section {
   padding: 120px 40px;
@@ -662,10 +512,6 @@ body.nav-visible .hero-top-gradient {
   padding: 28px;
 }
 
-.why {
-  background: #0f1113;
-}
-
 .vision {
   background: #14171a;
 }
@@ -696,6 +542,137 @@ body.nav-visible .hero-top-gradient {
 .footer-meta {
   text-align: right;
   opacity: 0.6;
+}
+
+/* ================= SECTION 3: CINEMATIC REVEAL ================= */
+.shift {
+  position: relative;
+  overflow: hidden;
+
+  background:
+    radial-gradient(
+      ellipse 90% 55% at 50% 40%,
+      rgba(18, 22, 30, 0.55) 0%,
+      rgba(15, 17, 19, 0.1) 40%,
+      rgba(15, 17, 19, 0) 65%
+    ),
+    linear-gradient(
+      to bottom,
+      #0a0b0d 0%,
+      #0f1113 45%,
+      #0f1113 100%
+    );
+}
+
+.s3-reveal {
+  position: relative;
+  min-height: 66vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.s3-reveal::before {
+  content: "";
+  position: absolute;
+  inset: -25%;
+
+  background: radial-gradient(
+    circle at 50% 52%,
+    rgba(100, 150, 255, 0.14) 0%,
+    rgba(100, 150, 255, 0.08) 18%,
+    rgba(0, 0, 0, 0) 55%
+  );
+
+  opacity: 0;
+  transform: scale(0.98);
+  transition: opacity 900ms ease, transform 900ms ease;
+  pointer-events: none;
+}
+
+.s3-reveal.in-view::before {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.s3-reveal .reveal-headline {
+  font-size: clamp(42px, 5vw, 64px);
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  margin-top: 14px;
+  margin-bottom: 10px;
+}
+
+.s3-reveal p {
+  max-width: 720px;
+  font-size: 15px;
+  opacity: 0.72;
+}
+
+.reveal-item,
+.reveal-line {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(16px);
+  filter: blur(12px);
+
+  transition:
+    opacity 700ms ease,
+    transform 700ms ease,
+    filter 900ms ease;
+
+  will-change: transform, opacity, filter;
+}
+
+.s3-reveal.in-view .reveal-item,
+.s3-reveal.in-view .reveal-line {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+}
+
+/* Stagger */
+.s3-reveal .reveal-item {
+  transition-delay: 120ms;
+}
+
+.s3-reveal .reveal-line {
+  transition-delay: 220ms;
+}
+
+.s3-reveal p.reveal-item {
+  transition-delay: 420ms;
+}
+
+.dot {
+  display: inline-block;
+  margin-left: 2px;
+  opacity: 0.9;
+  text-shadow: 0 0 16px rgba(100, 150, 255, 0.22);
+  animation: dot-breathe 2.8s ease-in-out infinite;
+}
+
+@keyframes dot-breathe {
+  0%,100% {
+    text-shadow: 0 0 10px rgba(100, 150, 255, 0.14);
+  }
+  50% {
+    text-shadow: 0 0 18px rgba(100, 150, 255, 0.28);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal-item,
+  .reveal-line,
+  .s3-reveal::before,
+  .dot {
+    transition: none;
+    animation: none;
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
 }
 
 /* ================= RESPONSIVE ================= */
@@ -828,22 +805,18 @@ body.nav-visible .hero-top-gradient {
     height: 32px;
     margin-left: 39px;
   }
-  
+
   /* MOBILE: Section 3 */
-  .section-3 {
-    padding: 100px 24px;
+  .s3-reveal {
+    min-height: 56vh;
   }
-  
-  .section-3::before {
-    height: 160px;
+
+  .s3-reveal .reveal-headline {
+    font-size: 42px;
   }
-  
-  .section-title {
-    line-height: 1.35;
-  }
-  
-  .section-description {
-    font-size: 15px;
-    line-height: 1.65;
+
+  .s3-reveal p {
+    font-size: 14px;
+    padding: 0 12px;
   }
 }
