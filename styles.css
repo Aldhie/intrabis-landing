@@ -681,23 +681,65 @@ body.nav-visible .hero-top-gradient {
   }
 }
 
+/* Light sweep (subtle) */
+@keyframes light-sweep {
+  0% {
+    opacity: 0;
+    transform: translateX(-120%) skewX(-14deg);
+  }
+  15% {
+    opacity: 0.45;
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(120%) skewX(-14deg);
+  }
+}
+
 /* Run animations only when section is in view */
 .s3-reveal.in-view .section-label.reveal-item {
-  animation: cine-reveal-soft 1200ms cubic-bezier(0.16, 1, 0.3, 1) 200ms both;
+  animation: cine-reveal-soft 1500ms cubic-bezier(0.16, 1, 0.3, 1) 260ms both;
 }
 
 .s3-reveal.in-view .reveal-line-1 {
-  animation: cine-reveal 1400ms cubic-bezier(0.16, 1, 0.3, 1) 520ms both;
+  animation: cine-reveal 1900ms cubic-bezier(0.16, 1, 0.3, 1) 700ms both;
 }
 
 /* Bigger pause before punchline */
 .s3-reveal.in-view .reveal-line-2 {
+  position: relative;
   margin-left: 0.22em;
-  animation: cine-punch 1600ms cubic-bezier(0.16, 1, 0.3, 1) 1750ms both;
+  animation: cine-punch 2400ms cubic-bezier(0.16, 1, 0.3, 1) 2400ms both;
+}
+
+/* Sweep highlight over punchline */
+.s3-reveal.in-view .reveal-line-2::after {
+  content: "";
+  position: absolute;
+  top: -0.25em;
+  bottom: -0.25em;
+  left: -35%;
+  right: -35%;
+  pointer-events: none;
+
+  background: linear-gradient(
+    110deg,
+    transparent 0%,
+    rgba(200, 230, 255, 0) 38%,
+    rgba(200, 230, 255, 0.22) 50%,
+    rgba(200, 230, 255, 0) 62%,
+    transparent 100%
+  );
+
+  mix-blend-mode: screen;
+  filter: blur(6px);
+  opacity: 0;
+
+  animation: light-sweep 1400ms cubic-bezier(0.2, 0.9, 0.2, 1) 3100ms both;
 }
 
 .s3-reveal.in-view p.reveal-item {
-  animation: cine-reveal-soft 1200ms cubic-bezier(0.16, 1, 0.3, 1) 2750ms both;
+  animation: cine-reveal-soft 1500ms cubic-bezier(0.16, 1, 0.3, 1) 4100ms both;
 }
 
 .dot {
