@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+          - feature/section-3-redesign
   workflow_dispatch:
 
 permissions:

@@ -264,7 +264,7 @@ body.nav-visible .hero-top-gradient {
 /* ================= SECTION: PROBLEM WITH CONNECTED CARDS (CANVAS VERSION) ================= */
 .problem-connected {
   position: relative;
-  padding: 140px 40px;
+  padding: 140px 40px 160px;
   overflow: hidden;
 
   /* Seamless vertical gradient blend from hero */
@@ -285,7 +285,7 @@ body.nav-visible .hero-top-gradient {
   );
 }
 
-/* Add subtle top overlay for even smoother blend */
+/* Top overlay for smoother blend from hero */
 .problem-connected::before {
   content: '';
   position: absolute;
@@ -301,6 +301,26 @@ body.nav-visible .hero-top-gradient {
     transparent 100%
   );
   
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Bottom fade bridge into Section 3 */
+.problem-connected::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 140px;
+
+  background: linear-gradient(
+    to bottom,
+    rgba(10, 11, 13, 0) 0%,
+    rgba(10, 11, 13, 0.8) 45%,
+    #0a0b0d 100%
+  );
+
   pointer-events: none;
   z-index: 0;
 }
@@ -544,6 +564,194 @@ body.nav-visible .hero-top-gradient {
   opacity: 0.6;
 }
 
+/* ================= SECTION 3: CINEMATIC REVEAL ================= */
+.shift {
+  position: relative;
+  overflow: hidden;
+  margin-top: -80px;
+  padding-top: 200px;
+
+  background:
+    radial-gradient(
+      ellipse 90% 55% at 50% 40%,
+      rgba(18, 22, 30, 0.55) 0%,
+      rgba(15, 17, 19, 0.1) 40%,
+      rgba(15, 17, 19, 0) 65%
+    ),
+    linear-gradient(
+      to bottom,
+      #0a0b0d 0%,
+      #0f1113 45%,
+      #0f1113 100%
+    );
+}
+
+.s3-reveal {
+  position: relative;
+  min-height: 66vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  perspective: 900px;
+}
+
+.s3-reveal::before {
+  content: "";
+  position: absolute;
+  inset: -25%;
+
+  background: radial-gradient(
+    circle at 50% 52%,
+      rgba(100, 150, 255, 0.14) 0%,
+      rgba(100, 150, 255, 0.08) 18%,
+      rgba(0, 0, 0, 0) 55%
+  );
+
+  opacity: 0;
+  transform: scale(0.965);
+  transition: opacity 1600ms cubic-bezier(0.16, 1, 0.3, 1), transform 1600ms cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+}
+
+.s3-reveal.in-view::before {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.s3-reveal .reveal-headline {
+  font-size: clamp(42px, 5vw, 64px);
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  margin-top: 14px;
+  margin-bottom: 10px;
+  white-space: nowrap;
+}
+
+.s3-reveal p {
+  max-width: 720px;
+  font-size: 15px;
+  opacity: 0.72;
+}
+
+/* Base state (hidden) */
+.reveal-item,
+.reveal-line {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(46px) scale(0.98) rotateX(14deg);
+  transform-origin: 50% 100%;
+  filter: blur(26px);
+  will-change: transform, opacity, filter;
+}
+
+/* Keyframes: cinematic rise + overshoot */
+@keyframes cine-reveal {
+  0% {
+    opacity: 0;
+    transform: translateY(46px) scale(0.98) rotateX(14deg);
+    filter: blur(26px);
+  }
+  65% {
+    opacity: 1;
+    transform: translateY(-10px) scale(1.012) rotateX(0deg);
+    filter: blur(6px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1) rotateX(0deg);
+    filter: blur(0);
+  }
+}
+
+@keyframes cine-reveal-soft {
+  0% {
+    opacity: 0;
+    transform: translateY(34px) scale(0.99);
+    filter: blur(18px);
+  }
+  70% {
+    opacity: 1;
+    transform: translateY(-6px) scale(1.006);
+    filter: blur(4px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+@keyframes cine-punch {
+  0% {
+    opacity: 0;
+    transform: translateY(50px) scale(0.975);
+    filter: blur(28px);
+    text-shadow: 0 0 0 rgba(100, 150, 255, 0);
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(-12px) scale(1.02);
+    filter: blur(6px);
+    text-shadow: 0 0 34px rgba(100, 150, 255, 0.22);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+    text-shadow: 0 0 28px rgba(100, 150, 255, 0.16);
+  }
+}
+
+/* Run animations only when section is in view */
+.s3-reveal.in-view .section-label.reveal-item {
+  animation: cine-reveal-soft 1500ms cubic-bezier(0.16, 1, 0.3, 1) 260ms both;
+}
+
+.s3-reveal.in-view .reveal-line-1 {
+  animation: cine-reveal 1900ms cubic-bezier(0.16, 1, 0.3, 1) 700ms both;
+}
+
+/* Bigger pause before punchline */
+.s3-reveal.in-view .reveal-line-2 {
+  margin-left: 0.22em;
+  animation: cine-punch 2400ms cubic-bezier(0.16, 1, 0.3, 1) 2400ms both;
+}
+
+.s3-reveal.in-view p.reveal-item {
+  animation: cine-reveal-soft 1500ms cubic-bezier(0.16, 1, 0.3, 1) 4100ms both;
+}
+
+.dot {
+  display: inline-block;
+  margin-left: 2px;
+  opacity: 0.9;
+  text-shadow: 0 0 16px rgba(100, 150, 255, 0.22);
+  animation: dot-breathe 2.8s ease-in-out infinite;
+}
+
+@keyframes dot-breathe {
+  0%,100% {
+    text-shadow: 0 0 10px rgba(100, 150, 255, 0.14);
+  }
+  50% {
+    text-shadow: 0 0 18px rgba(100, 150, 255, 0.28);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal-item,
+  .reveal-line,
+  .s3-reveal::before,
+  .dot {
+    transition: none;
+    animation: none;
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+}
+
 /* ================= RESPONSIVE ================= */
 @media (max-width: 900px) {
   .two-column {
@@ -632,11 +840,15 @@ body.nav-visible .hero-top-gradient {
 
   /* MOBILE: Problem Connected Section */
   .problem-connected {
-    padding: 80px 20px;
+    padding: 80px 20px 120px;
   }
 
   .problem-connected::before {
     height: 120px;
+  }
+
+  .problem-connected::after {
+    height: 140px;
   }
 
   .problem-grid {
@@ -673,5 +885,20 @@ body.nav-visible .hero-top-gradient {
   .connector-line {
     height: 32px;
     margin-left: 39px;
+  }
+
+  /* MOBILE: Section 3 */
+  .s3-reveal {
+    min-height: 56vh;
+  }
+
+  .s3-reveal .reveal-headline {
+    font-size: 42px;
+    white-space: normal;
+  }
+
+  .s3-reveal p {
+    font-size: 14px;
+    padding: 0 12px;
   }
 }
